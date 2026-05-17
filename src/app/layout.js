@@ -1,5 +1,9 @@
 import { Nunito_Sans, Poppins } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+import Logo from "@/components/Logo";
+import Link from "next/link";
+import { Button } from "@heroui/react";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -24,7 +28,32 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.variable} ${nunito.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <Navbar
+          brand={
+            <Link href="/" className="flex items-center">
+              <Logo />
+              <p className="font-bold font-nunito text-5xl"> <span className="text-accent">Pet</span><span className="text-primary">Nearly</span></p>
+            </Link>
+
+
+          }
+          items={[
+            { label: "Home", href: "/" },
+            { label: "All Pets", href: "/all-pets" },
+          ]}
+          rightContent={
+            <>
+              <Link href="/login">
+                <Button className="bg-accent py-2 px-4 text-white cursor-pointer hover:bg-accent/90 transition-colors delay-100">Login</Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="bg-primary py-2 px-4 text-white cursor-pointer hover:bg-primary/90 transition-colors delay-100">Sign Up</Button>
+              </Link>
+            </>
+          }
+        />
+        {children}</body>
     </html>
   );
 }
