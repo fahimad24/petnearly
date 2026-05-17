@@ -1,4 +1,4 @@
-import { Nunito_Sans, Poppins } from "next/font/google";
+import { Nunito, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import Logo from "@/components/Logo";
@@ -11,7 +11,7 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const nunito = Nunito_Sans({
+const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -23,6 +23,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html
       lang="en"
@@ -33,11 +34,12 @@ export default function RootLayout({ children }) {
           brand={
             <Link href="/" className="flex items-center">
               <Logo />
-              <p className="font-bold font-nunito text-5xl"> <span className="text-accent">Pet</span><span className="text-primary">Nearly</span></p>
+              <p className="font-black font-nunito text-5xl"> <span className="text-accent">Pet</span><span className="text-primary">Nearly</span></p>
             </Link>
 
 
           }
+          className="bg-neutral"
           items={[
             { label: "Home", href: "/" },
             { label: "All Pets", href: "/all-pets" },

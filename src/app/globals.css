@@ -5,7 +5,7 @@
   --primary: #2f8f2f;
   --secondary: #a7e635;
   --accent: #ff8e1c;
-  --neutral: #f7faf5;
+  --neutral: #f2eee5;
   --dark-text: #1f2937;
   --light-text: #4b5563;
 }
@@ -26,11 +26,23 @@ Neutral = page background
   --color-dark-text: var(--dark-text);
   --color-light-text: var(--light-text);
   --font-poppins: var(--font-poppins);
-  --font-nunito: var(--font-nunito);
+  --font-nunito: var(--font-nunito), sans-serif;
 }
 
 body {
   background-color: var(--color-neutral);
   color: var(--color-foreground);
-  font-family: var(--font-poppins), sans-serif;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.thumclip::before {
+  content: "";
+  position: absolute;
+  left: -83px;
+  top: 0;
+  width: 85px;
+  height: 100%;
+  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 100% 50%, 0% 0%);
+  background: #2f8f2f;
+  z-index: 100;
 }
