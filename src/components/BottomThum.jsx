@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from "./Icon";
 
 const BottomThum = () => {
   return (
@@ -9,20 +10,23 @@ const BottomThum = () => {
       </div>
       <div className="find-category col-span-5 bg-primary thumclip relative">
         <ul className="grid grid-cols-3 ">
-          <li className="text-center border-r-4 border-gray-600/20 py-15">
-            <a href="#/shop">
-              <i className="flaticon-dog"></i> Find Your Dog
-            </a>
+          <li className="text-center border-r-4 border-gray-600/20 py-15 flex gap-3 justify-center items-center">
+            <Icon src="/dog.png" alt="DogPrint" width={50} height={50} /> Find
+            Your Dog
           </li>
-          <li className="text-center border-r-4 border-gray-600/20 py-15">
-            <a href="#/shop">
-              <i className="flaticon-happy"></i> Find Your Cat
-            </a>
+          <li
+            className="text-center border-r-4 border-gray-600/20 py-15 flex  justify-center items-center gap-3
+          "
+          >
+            <Icon src="/cat.png" alt="CatPrint" width={50} height={50} /> Find
+            Your Cat
           </li>
-          <li className="text-center py-15">
-            <a href="#/shop">
-              <i className="flaticon-dove"></i> Find Your Birds
-            </a>
+          <li
+            className="text-center py-15 flex  justify-center items-center gap-3
+          "
+          >
+            <Icon src="/bird.png" alt="BirdPrint" width={50} height={50} /> Find
+            Your Birds
           </li>
         </ul>
       </div>
