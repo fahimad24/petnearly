@@ -3,8 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import Logo from "@/components/Logo";
 import Link from "next/link";
-import { Button } from "@heroui/react";
-
+import { Toast } from "@heroui/react";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -55,7 +54,9 @@ export default function RootLayout({ children }) {
             </>
           }
         />
-        {children}</body>
+        {children}
+        <Toast.Provider />
+      </body>
     </html>
   );
 }

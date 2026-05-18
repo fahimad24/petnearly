@@ -1,6 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
+import { signIn } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -10,10 +11,31 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const { data, error } = await signIn.email({
+      email, // required
+      password, // required
+    });
+
+    if (error) {
+      toast.danger(error.message);
+      return;
+    }
+    toast.success("Logged in successfully!");
+    redirect("/"); // Redirect to the home page after successful login
+  };
   return (
     <section className="flex h-screen items-center justify-center bg-[url('/cat-and-dog.webp')] bg-cover bg-center relative">
       <div className="backdrop-blur absolute w-full h-full top-0"></div>
@@ -27,6 +49,7 @@ export default function LoginPage() {
         <Form
           className="flex  flex-col gap-4"
           render={(props) => <form {...props} data-custom="foo" />}
+          onSubmit={handleFormSubmit}
         >
           <TextField
             isRequired

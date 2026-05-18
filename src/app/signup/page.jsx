@@ -1,6 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
+import { signOut, signUp } from "@/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
@@ -11,21 +12,36 @@ import {
   InputGroup,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function SignupPage() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    console.log("Form Data:", data);
-    alert("Form submitted successfully!");
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const image = formData.get("Photo");
+    const { error } = await signUp.email({
+      name, // required
+      email, // required
+      password, // required
+      image, // required
+    });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    await signOut();
+    toast.success("Account created successfully!");
+    redirect("/login");
   };
   return (
     <section className="flex h-screen items-center justify-center bg-[url('/dogs.webp')] bg-cover bg-center relative">

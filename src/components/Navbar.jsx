@@ -5,6 +5,8 @@ import { cn } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
+import { ProfileAvatar } from "@/ui/Profile";
 // or your cn utility
 
 const maxWidthClasses = {
@@ -26,7 +28,8 @@ export function Navbar({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  console.log(pathname);
+  const userData = useSession();
+  const session = userData.data?.user;
 
   return (
     <>
@@ -97,7 +100,7 @@ export function Navbar({
           </ul>
           {rightContent && (
             <div className="hidden items-center gap-4 md:flex">
-              {rightContent}
+              {session ? <ProfileAvatar session={session} /> : rightContent}
             </div>
           )}
         </header>
