@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useState } from "react";
-import { cn } from "@heroui/react";
+import { cn, Skeleton } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -28,8 +28,9 @@ export function Navbar({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  const userData = useSession();
-  const session = userData.data?.user;
+  const { data, isPending } = useSession();
+  const session = data?.user;
+  console.log("Session in Navbar:", data);
 
   return (
     <>
@@ -43,7 +44,7 @@ export function Navbar({
       >
         <header
           className={cn(
-            "flex h-20 items-center justify-between px-6",
+            "grid grid-cols-3 h-20 items-center justify-between ",
             maxWidth !== "full" && maxWidthClasses[maxWidth],
             "mx-auto",
           )}
@@ -81,7 +82,7 @@ export function Navbar({
             </button>
             {brand}
           </div>
-          <ul className="hidden items-center gap-4 md:flex">
+          <ul className="hidden items-center justify-center gap-4 md:flex">
             {items.map((item) => (
               <li key={item.href}>
                 <Link
@@ -99,8 +100,16 @@ export function Navbar({
             ))}
           </ul>
           {rightContent && (
-            <div className="hidden items-center gap-4 md:flex">
-              {session ? <ProfileAvatar session={session} /> : rightContent}
+            <div className="hidden items-center justify-end gap-4 md:flex">
+              {isPending ? (
+                <div className="flex items-center gap-3">
+                  <Skeleton className="h-10 w-10 shrink-0 rounded-full bg-gray-400" />
+                </div>
+              ) : session ? (
+                <ProfileAvatar session={session} />
+              ) : (
+                rightContent
+              )}
             </div>
           )}
         </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
+import Logo from "@/components/Logo";
 import { signOut, signUp } from "@/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
@@ -44,7 +45,15 @@ export default function SignupPage() {
     redirect("/login");
   };
   return (
-    <section className="flex h-screen items-center justify-center bg-[url('/dogs.webp')] bg-cover bg-center relative">
+    <section className="flex flex-col pt-24 py-10 items-center justify-center bg-[url('/dogs.webp')] bg-cover bg-center relative">
+      <div className="flex items-center mb-5 z-10">
+        <Logo />
+        <p className="font-black font-nunito text-5xl">
+          {" "}
+          <span className="text-accent">Pet</span>
+          <span className="text-primary">Nearly</span>
+        </p>
+      </div>
       <div className="backdrop-blur absolute w-full h-full top-0"></div>
       <div className="w-120 border-2 border-accent shadow rounded p-6 bg-neutral/80 z-10">
         <h1 className="text-4xl font-bold mb-2 text-center">

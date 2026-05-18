@@ -6,6 +6,7 @@
   --secondary: #a7e635;
   --accent: #ff8e1c;
   --neutral: #f2eee5;
+  --backTone: #f7faf5;
   --dark-text: #1f2937;
   --light-text: #4b5563;
 }
@@ -20,6 +21,7 @@ Neutral = page background
 @theme inline {
   --color-neutral: var(--neutral);
   --color-foreground: var(--foreground);
+  --color-backTone: var(--backTone);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
@@ -30,7 +32,7 @@ Neutral = page background
 }
 
 body {
-  background-color: var(--color-neutral);
+  background-color: var(--backTone);
   color: var(--color-foreground);
   font-family: var(--font-nunito), sans-serif;
 }

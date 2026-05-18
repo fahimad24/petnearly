@@ -1,10 +1,12 @@
 import { signOut } from "@/lib/auth-client";
 import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 export function ProfileAvatar({ session }) {
   const handleLogout = async () => {
     await signOut();
+    redirect("/login");
   };
 
   return (
@@ -18,7 +20,9 @@ export function ProfileAvatar({ session }) {
               "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg"
             }
           />
-          <Avatar.Fallback delayMs={600}></Avatar.Fallback>
+          <Avatar.Fallback delayMs={600}>
+            {session?.name?.charAt(0)}
+          </Avatar.Fallback>
         </Avatar>
       </Dropdown.Trigger>
       <Dropdown.Popover>
