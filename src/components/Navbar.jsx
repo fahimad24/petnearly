@@ -127,7 +127,7 @@ export function Navbar({
           </div>
         )}
       </nav>
-      <div className=" h-10 w-full fixed top-18">
+      <div className=" h-10 w-full fixed top-18 z-20">
         <Image src="/menu_strip.png" alt="Logo" fill loading="eager" />
       </div>
     </>

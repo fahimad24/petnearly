@@ -15,8 +15,9 @@ import Link from "next/link";
 
 export default function LoginPage() {
   return (
-    <section className="flex h-screen items-center justify-center">
-      <div className="w-120 border-2 border-accent/40 shadow rounded p-6">
+    <section className="flex h-screen items-center justify-center bg-[url('/cat-and-dog.webp')] bg-cover bg-center relative">
+      <div className="backdrop-blur absolute w-full h-full top-0"></div>
+      <div className="w-120 border-2 border-accent shadow rounded p-6 bg-neutral/80 z-10">
         <h1 className="text-4xl font-bold mb-2 text-center">
           Welcome Back Again!
         </h1>
