@@ -1,58 +1,112 @@
 "use client";
 
-import { Envelope } from "@gravity-ui/icons";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import Icon from "@/components/Icon";
+import { useUserInfo } from "@/lib/action-client";
+import {
+  Button,
+  Input,
+  Label,
+  Modal,
+  Surface,
+  TextField,
+  toast,
+} from "@heroui/react";
+import { DatePickerComponent } from "./DatePicker";
+import { submitAdoptionRequest } from "@/lib/action";
 
-export function WithForm() {
+export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
+  const { session } = useUserInfo();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    const formData = new FormData(e.target);
+
+    //send the data to the server
+    const res = await submitAdoptionRequest(formData, pet, session);
+    if (res.ok) {
+      toast.success("Adoption request submitted successfully!");
+    } else {
+      toast.danger("Failed to submit adoption request. Please try again.");
+    }
+  };
   return (
     <Modal>
-      <Button variant="secondary">Open Contact Form</Button>
+      <Button {...btnProps}>
+        {btntext}
+        {icon}
+      </Button>
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
-                <Envelope className="size-5" />
+                <Icon src="/paw.png" alt="Adopt" width={16} height={16} />
               </Modal.Icon>
-              <Modal.Heading>Contact Us</Modal.Heading>
+              <Modal.Heading className="font-black">
+                Request to Adopt {pet?.petName}
+              </Modal.Heading>
               <p className="mt-1.5 text-sm leading-5 text-muted">
-                Fill out the form below and we&apos;ll get back to you. The
-                modal adapts automatically when the keyboard appears on mobile.
+                Please fill out the form below to submit your adoption request.
+                Our team will review your request and get back to you as soon
+                asdate possible.
               </p>
             </Modal.Header>
             <Modal.Body className="p-6">
               <Surface variant="default">
-                <form className="flex flex-col gap-4">
-                  <TextField className="w-full" name="name" type="text">
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <TextField
+                    isReadOnly
+                    className="w-full"
+                    name="name"
+                    type="text"
+                  >
+                    <Label>Pet Name</Label>
+                    <Input value={pet?.petName} placeholder="Enter your name" />
                   </TextField>
-                  <TextField className="w-full" name="email" type="email">
+                  <TextField
+                    isReadOnly
+                    className="w-full"
+                    name="username"
+                    type="text"
+                  >
+                    <Label>User Name</Label>
+                    <Input
+                      value={session?.name}
+                      placeholder="Enter your username"
+                    />
+                  </TextField>
+                  <TextField
+                    isReadOnly
+                    className="w-full"
+                    name="email"
+                    type="email"
+                  >
                     <Label>Email</Label>
-                    <Input placeholder="Enter your email" />
+                    <Input
+                      value={session?.email}
+                      placeholder="Enter your email"
+                    />
                   </TextField>
-                  <TextField className="w-full" name="phone" type="tel">
-                    <Label>Phone</Label>
-                    <Input placeholder="Enter your phone number" />
-                  </TextField>
-                  <TextField className="w-full" name="company">
-                    <Label>Company</Label>
-                    <Input placeholder="Enter your company name" />
-                  </TextField>
+
+                  <DatePickerComponent />
+
                   <TextField className="w-full" name="message">
                     <Label>Message</Label>
                     <Input placeholder="Enter your message" />
                   </TextField>
+                  <Modal.Footer>
+                    <Button slot="close" variant="secondary">
+                      Cancel
+                    </Button>
+                    <Button slot="close" type="submit">
+                      Adopt now
+                    </Button>
+                  </Modal.Footer>
                 </form>
               </Surface>
             </Modal.Body>
-            <Modal.Footer>
-              <Button slot="close" variant="secondary">
-                Cancel
-              </Button>
-              <Button slot="close">Send Message</Button>
-            </Modal.Footer>
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>

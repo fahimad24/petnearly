@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
+import { ModalButton } from "@/ui/ModalButton";
 
 const PetContent = async ({ params }) => {
   let pet = null;
@@ -114,23 +115,29 @@ const PetContent = async ({ params }) => {
                   </p>
                 </div>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <Button
-                    isDisabled={pet.status !== "Available"}
-                    className={cn(
-                      " text-dark-text font-bold w-full rounded-lg  transition-colors duration-200 flex items-center justify-center gap-2",
-                      pet.status == "Available"
-                        ? "bg-secondary hover:bg-secondary/80"
-                        : "bg-red-500 cursor-not-allowed",
-                    )}
-                  >
-                    {pet.status === "Available" ? "Adopt Me" : "Adopted"}
-                    <Icon
-                      src="/pawprint.png"
-                      alt="Adopt"
-                      width={16}
-                      height={16}
-                    />
-                  </Button>
+                  <ModalButton
+                    btnProps={{
+                      isDisabled: pet.status !== "Available",
+                      className: cn(
+                        " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full px-6 py-2",
+                        pet.status == "Available"
+                          ? "bg-secondary hover:bg-secondary/80"
+                          : "bg-red-500 cursor-not-allowed",
+                      ),
+                    }}
+                    btntext={
+                      pet.status === "Available" ? "Adopt Me" : "Adopted"
+                    }
+                    icon={
+                      <Icon
+                        src="/pawprint.png"
+                        alt="Adopt"
+                        width={16}
+                        height={16}
+                      />
+                    }
+                    pet={pet}
+                  />
                   <span className="text-xs text-light-text">
                     Location verified in {pet.location}
                   </span>

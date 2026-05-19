@@ -1,5 +1,5 @@
 import { Nunito, Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Navbar } from "@/components/Navbar";
 import Logo from "@/components/Logo";
 import Link from "next/link";
@@ -34,10 +34,11 @@ export default function RootLayout({ children }) {
           brand={
             <Link href="/" className="flex items-center">
               <Logo />
-              <p className="font-black font-nunito text-5xl"> <span className="text-accent">Pet</span><span className="text-primary">Nearly</span></p>
+              <p className="font-black font-nunito text-5xl">
+                <span className="text-accent">Pet</span>
+                <span className="text-primary">Nearly</span>
+              </p>
             </Link>
-
-
           }
           className="bg-neutral"
           items={[
@@ -46,10 +47,16 @@ export default function RootLayout({ children }) {
           ]}
           rightContent={
             <>
-              <Link className="bg-accent py-2 px-4 text-white cursor-pointer hover:bg-accent/90 transition-colors delay-100" href="/login">
+              <Link
+                className="bg-accent py-2 px-4 text-white cursor-pointer hover:bg-accent/90 transition-colors delay-100"
+                href="/login"
+              >
                 Login
               </Link>
-              <Link className="bg-primary py-2 px-4 text-white cursor-pointer hover:bg-primary/90 transition-colors delay-100" href="/signup">
+              <Link
+                className="bg-primary py-2 px-4 text-white cursor-pointer hover:bg-primary/90 transition-colors delay-100"
+                href="/signup"
+              >
                 Sign Up
               </Link>
             </>
@@ -58,6 +65,6 @@ export default function RootLayout({ children }) {
         {children}
         <Toast.Provider />
       </body>
-    </html>
+    </html >
   );
 }

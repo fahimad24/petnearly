@@ -5,6 +5,7 @@ import { TiLocationOutline } from "react-icons/ti";
 import { cn } from "@heroui/styles";
 import { Button, Separator } from "@heroui/react";
 import Link from "next/link";
+import { ModalButton } from "@/ui/ModalButton";
 
 const PetCard = ({ pet }) => {
   return (
@@ -88,18 +89,22 @@ const PetCard = ({ pet }) => {
             View Details
           </Link>
 
-          <Button
-            isDisabled={pet.status !== "Available"}
-            className={cn(
-              " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
-              pet.status == "Available"
-                ? "bg-secondary hover:bg-secondary/80"
-                : "bg-red-500 cursor-not-allowed",
-            )}
-          >
-            {pet.status === "Available" ? "Adopt Me" : "Adopted"}
-            <Icon src="/pawprint.png" alt="Adopt" width={16} height={16} />
-          </Button>
+          <ModalButton
+            btnProps={{
+              isDisabled: pet.status !== "Available",
+              className: cn(
+                " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
+                pet.status == "Available"
+                  ? "bg-secondary hover:bg-secondary/80"
+                  : "bg-red-500 cursor-not-allowed",
+              ),
+            }}
+            btntext={pet.status === "Available" ? "Adopt Me" : "Adopted"}
+            icon={
+              <Icon src="/pawprint.png" alt="Adopt" width={16} height={16} />
+            }
+            pet={pet}
+          />
         </div>
       </div>
     </div>
