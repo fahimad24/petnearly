@@ -3,7 +3,7 @@ import Icon from "./Icon";
 
 const BottomThum = () => {
   return (
-    <div className="absolute grid grid-cols-3 md:grid-cols-9 right-0 left-0 -bottom-60 text-xl font-bold">
+    <div className="absolute grid grid-cols-3 md:grid-cols-9 right-0 left-0 -bottom-60 text-xl font-bold z-10">
       <div className="py-15 pl-10 rounded-l-2xl bg-accent col-span-2">
         <i className="flaticon-location"></i>
         <input type="text" defaultValue="Enter City, State. or Zip" />

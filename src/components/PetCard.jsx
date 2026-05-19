@@ -82,7 +82,7 @@ const PetCard = ({ pet }) => {
         {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-3  border-t px-4 py-3">
           <Link
-            className="bg-primary text-white font-bold py-2 px-3 w-full rounded-lg hover:bg-primary/80 transition-colors duration-200 flex items-center justify-center gap-2"
+            className="bg-primary text-white font-bold py-2 px-3 w-full rounded-none hover:bg-primary/80 transition-colors duration-200 flex items-center justify-center gap-2"
             href={`/all-pets/${pet._id}`}
           >
             View Details
@@ -91,7 +91,7 @@ const PetCard = ({ pet }) => {
           <Button
             isDisabled={pet.status !== "Available"}
             className={cn(
-              " text-dark-text font-bold w-full rounded-lg  transition-colors duration-200 flex items-center justify-center gap-2",
+              " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
               pet.status == "Available"
                 ? "bg-secondary hover:bg-secondary/80"
                 : "bg-red-500 cursor-not-allowed",

@@ -1,3 +1,4 @@
+import FeaturePets from "@/components/FeaturePets";
 import Hero from "@/components/Hero";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
         <Hero />
       </header>
       <main className="">
-
+        <FeaturePets />
       </main>
     </div>
   );
