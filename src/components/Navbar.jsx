@@ -30,7 +30,6 @@ export function Navbar({
   const pathname = usePathname();
   const { data, isPending } = useSession();
   const session = data?.user;
-  console.log("Session in Navbar:", session);
 
   return (
     <>

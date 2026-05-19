@@ -4,6 +4,7 @@ import Icon from "./Icon";
 import { TiLocationOutline } from "react-icons/ti";
 import { cn } from "@heroui/styles";
 import { Button, Separator } from "@heroui/react";
+import Link from "next/link";
 
 const PetCard = ({ pet }) => {
   return (
@@ -80,9 +81,13 @@ const PetCard = ({ pet }) => {
 
         {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-3  border-t px-4 py-3">
-          <Button className="bg-primary text-white font-bold py-2 px-3 w-full rounded-lg hover:bg-primary/80 transition-colors duration-200 flex items-center justify-center gap-2">
+          <Link
+            className="bg-primary text-white font-bold py-2 px-3 w-full rounded-lg hover:bg-primary/80 transition-colors duration-200 flex items-center justify-center gap-2"
+            href={`/all-pets/${pet._id}`}
+          >
             View Details
-          </Button>
+          </Link>
+
           <Button
             isDisabled={pet.status !== "Available"}
             className={cn(

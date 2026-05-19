@@ -1,46 +1,10 @@
-import { getAllPets } from "@/lib/action";
-import PetCard from "@/components/PetCard";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
+import { PetsContent } from "@/components/PetsContent";
+import { getAllPets } from "@/lib/action";
 
-const PetsContent = async () => {
+const AllPetsPage = async () => {
   const pets = await getAllPets();
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {pets && pets.length > 0 ? (
-        <>
-          <div className="mb-8">
-            <p className="text-lg text-light-text font-semibold">
-              Showing{" "}
-              <span className="text-primary font-bold">{pets.length}</span> pets
-              available for adoption
-            </p>
-          </div>
-
-          {/* Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-            {pets.map((pet) => (
-              <PetCard key={pet._id || pet.id} pet={pet} />
-            ))}
-          </div>
-        </>
-      ) : (
-        <div className="text-center py-20">
-          <div className="text-6xl mb-4">🐾</div>
-          <h2 className="text-3xl font-bold text-dark-text mb-3">
-            No Pets Available
-          </h2>
-          <p className="text-light-text text-lg">
-            Check back soon for new pets available for adoption!
-          </p>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const AllPetsPage = () => {
   return (
     <main className="min-h-screen bg-backTone">
       {/* Header Section */}
@@ -54,11 +18,20 @@ const AllPetsPage = () => {
           </p>
         </div>
       </section>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8 ">
+          <p className="text-lg text-light-text font-semibold">
+            Showing{" "}
+            <span className="text-primary font-bold">{pets.length}</span> pets
+            available for adoption
+          </p>
+        </div>
 
-      {/* Content Section with Suspense */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <PetsContent />
-      </Suspense>
+        {/* Content Section with Suspense */}
+        <Suspense fallback={<LoadingSpinner />}>
+          <PetsContent pets={pets} itemCount={pets.length} />
+        </Suspense>
+      </section>
     </main>
   );
 };
