@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
-import { PetsContent } from "@/components/PetsContent";
-import { getAllPets } from "@/lib/action";
+import { PetsContent } from "@/app/components/PetsContent";
+import { getAllPets } from "@/app/lib/action";
 
 const AllPetsPage = async () => {
   const pets = await getAllPets();

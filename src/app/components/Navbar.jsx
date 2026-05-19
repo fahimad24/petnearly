@@ -5,8 +5,8 @@ import { cn, Skeleton } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useSession } from "@/lib/auth-client";
 import { ProfileAvatar } from "@/ui/Profile";
+import { useSession } from "../lib/auth-client";
 // or your cn utility
 
 const maxWidthClasses = {
@@ -20,6 +20,7 @@ const maxWidthClasses = {
 
 export function Navbar({
   brand,
+  subImage,
   items,
   rightContent,
   className,
@@ -82,21 +83,22 @@ export function Navbar({
             {brand}
           </div>
           <ul className="hidden items-center justify-center gap-4 md:flex">
-            {items.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    item.isActive && "font-medium text-accent",
-                    "hover:text-accent transition-colors delay-100 text-dark-text",
-                    pathname === item.href && "font-semibold text-accent",
-                  )}
-                  aria-current={item.isActive ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {items &&
+              items.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      item.isActive && "font-medium text-accent",
+                      "hover:text-accent transition-colors delay-100 text-dark-text",
+                      pathname === item.href && "font-semibold text-accent",
+                    )}
+                    aria-current={item.isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
           </ul>
           {rightContent && (
             <div className="hidden items-center justify-end gap-4 md:flex">
@@ -115,20 +117,21 @@ export function Navbar({
         {isMenuOpen && (
           <div className="border-t border-gray-200 md:hidden">
             <ul className="flex flex-col gap-2 p-4">
-              {items.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "block py-2",
-                      item.isActive && "font-medium text-accent",
-                      "hover:text-accent transition-colors delay-100",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {items &&
+                items.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "block py-2",
+                        item.isActive && "font-medium text-accent",
+                        "hover:text-accent transition-colors delay-100",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               {rightContent && (
                 <li className="mt-4 flex flex-col gap-2 border-t border-gray-200 pt-4">
                   {rightContent}
@@ -138,9 +141,7 @@ export function Navbar({
           </div>
         )}
       </nav>
-      <div className=" h-10 w-full fixed top-18 z-20">
-        <Image src="/menu_strip.png" alt="Logo" fill loading="eager" />
-      </div>
+      {subImage && subImage}
     </>
   );
 }

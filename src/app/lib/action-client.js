@@ -1,18 +1,11 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
 
-export const getAllPets = async () => {
-    const res = await fetch(`${API_URL}/all-pets`);
-    const pets = await res.json();
-    return pets;
-};
+import { useSession } from "./auth-client";
 
-export const getPetById = async (petId) => {
-    const res = await fetch(`${API_URL}/all-pets/${petId}`);
-    if (!res.ok) {
-        throw new Error("Failed to fetch pet details");
-    }
-    const pet = await res.json();
-    return pet;
+export const useUserInfo = () => {
+    const { data, isPending } = useSession();
+    const session = data?.user;
+    return { session, isPending };
 };
 
 export const submitAdoptionRequest = async (formData, pet, session) => {
@@ -25,7 +18,6 @@ export const submitAdoptionRequest = async (formData, pet, session) => {
     const petId = pet._id;
     const userId = session?.id;
 
-    //send the data to the server
     const res = await fetch(`${API_URL}/adopt-pet`, {
         method: "POST",
         headers: {
@@ -41,6 +33,17 @@ export const submitAdoptionRequest = async (formData, pet, session) => {
             petId,
             userId,
         })
+    });
+    return res;
+}
+
+export const updatePetStatus = async (petId, status) => {
+    const res = await fetch(`${API_URL}/all-pets/${petId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status }),
     });
     return res;
 }

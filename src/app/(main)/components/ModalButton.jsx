@@ -1,7 +1,6 @@
 "use client";
 
-import Icon from "@/components/Icon";
-import { useUserInfo } from "@/lib/action-client";
+import Icon from "@/app/components/Icon";
 import {
   Button,
   Input,
@@ -11,8 +10,13 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
-import { DatePickerComponent } from "./DatePicker";
-import { submitAdoptionRequest } from "@/lib/action";
+import { DatePickerComponent } from "../../../ui/DatePicker";
+
+import {
+  submitAdoptionRequest,
+  updatePetStatus,
+  useUserInfo,
+} from "@/app/lib/action-client";
 
 export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
   const { session } = useUserInfo();
@@ -24,7 +28,9 @@ export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
 
     //send the data to the server
     const res = await submitAdoptionRequest(formData, pet, session);
-    if (res.ok) {
+    const ress = await updatePetStatus(pet._id, "Pending");
+
+    if (res.ok && ress.ok) {
       toast.success("Adoption request submitted successfully!");
     } else {
       toast.danger("Failed to submit adoption request. Please try again.");

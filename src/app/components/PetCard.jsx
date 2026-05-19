@@ -1,13 +1,21 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Icon from "./Icon";
 import { TiLocationOutline } from "react-icons/ti";
 import { cn } from "@heroui/styles";
-import { Button, Separator } from "@heroui/react";
+import { Separator } from "@heroui/react";
 import Link from "next/link";
-import { ModalButton } from "@/ui/ModalButton";
+import { useRouter } from "next/navigation";
 
 const PetCard = ({ pet }) => {
+  const router = useRouter();
+
+  const handleLinkClick = (e) => {
+    router.push(`/all-pets/${pet._id}`);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-2 border-secondary/20">
       {/* Image Container */}
@@ -18,6 +26,7 @@ const PetCard = ({ pet }) => {
             alt={pet.petName || "Pet Image"}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="eager"
             className="object-cover hover:scale-105 transition-transform duration-300"
           />
         ) : (
@@ -89,22 +98,19 @@ const PetCard = ({ pet }) => {
             View Details
           </Link>
 
-          <ModalButton
-            btnProps={{
-              isDisabled: pet.status !== "Available",
-              className: cn(
-                " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
-                pet.status == "Available"
-                  ? "bg-secondary hover:bg-secondary/80"
-                  : "bg-red-500 cursor-not-allowed",
-              ),
-            }}
-            btntext={pet.status === "Available" ? "Adopt Me" : "Adopted"}
-            icon={
-              <Icon src="/pawprint.png" alt="Adopt" width={16} height={16} />
-            }
-            pet={pet}
-          />
+          <button
+            onClick={handleLinkClick}
+            disabled={pet.status == "Aproved"}
+            className={cn(
+              " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
+              pet.status == "Available"
+                ? "bg-secondary hover:bg-secondary/80"
+                : "bg-red-500 opacity-70 cursor-not-allowed",
+            )}
+          >
+            {pet.status === "Available" ? "Adopt Me" : "Adopted"}
+            <Icon src="/pawprint.png" alt="Adopt" width={16} height={16} />
+          </button>
         </div>
       </div>
     </div>

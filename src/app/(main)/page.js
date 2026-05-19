@@ -1,5 +1,5 @@
-import FeaturePets from "@/components/FeaturePets";
-import Hero from "@/components/Hero";
+import FeaturePets from "@/app/components/FeaturePets";
+import Hero from "@/app/components/Hero";
 
 export default function Home() {
 

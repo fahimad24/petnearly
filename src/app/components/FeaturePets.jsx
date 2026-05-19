@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import { PetsContent } from "./PetsContent";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
-import { getAllPets } from "@/lib/action";
 import Icon from "./Icon";
-import { Button } from "@heroui/react";
 import Link from "next/link";
+import { getAllPets } from "../lib/action";
 
 const FeaturePets = async () => {
   const data = await getAllPets();

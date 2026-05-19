@@ -1,9 +1,10 @@
 import { Nunito, Poppins } from "next/font/google";
 import "../globals.css";
-import { Navbar } from "@/components/Navbar";
-import Logo from "@/components/Logo";
+import { Navbar } from "@/app/components/Navbar";
+import Logo from "@/app/components/Logo";
 import Link from "next/link";
 import { Toast } from "@heroui/react";
+import Image from "next/image";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -60,6 +61,11 @@ export default function RootLayout({ children }) {
                 Sign Up
               </Link>
             </>
+          }
+          subImage={
+            <div className=" h-10 w-full fixed top-18 z-20">
+              <Image src="/menu_strip.png" alt="Logo" fill loading="eager" />
+            </div>
           }
         />
         {children}

@@ -1,8 +1,8 @@
 "use client";
 
-import Icon from "@/components/Icon";
-import Logo from "@/components/Logo";
-import { signOut, signUp } from "@/lib/auth-client";
+import Icon from "@/app/components/Icon";
+import Logo from "@/app/components/Logo";
+import { signInWithGoogle, signOut } from "@/app/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
@@ -226,7 +226,10 @@ export default function SignupPage() {
             <hr className="flex-1 border-t-2" />
           </div>
           <div className="flex items-center justify-center  mt-4">
-            <Button className="bg-white text-accent rounded-none">
+            <Button
+              onPress={signInWithGoogle}
+              className="bg-white text-accent rounded-none"
+            >
               <Icon
                 src="/google.png"
                 alt="Google Logo"

@@ -1,10 +1,12 @@
-import { signOut } from "@/lib/auth-client";
-import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
+import { signOut, useSession } from "@/app/lib/auth-client";
+import { ArrowRightFromSquare } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export function ProfileAvatar({ session }) {
+export function ProfileAvatar() {
+  const { data, isPending } = useSession();
+  const session = data?.user;
   const initials = session?.name
     ?.split(" ")
     .filter(Boolean)
@@ -55,13 +57,13 @@ export function ProfileAvatar({ session }) {
           </div>
         </div>
         <Dropdown.Menu>
-          <Dropdown.Item id="dashboard" textValue="Dashboard">
-            <Link href="/dashboard">
+          <Dropdown.Item id="dashboard" className="py-0" textValue="Dashboard">
+            <Link href="/dashboard" className="w-full h-full py-2">
               <Label>Dashboard</Label>
             </Link>
           </Dropdown.Item>
-          <Dropdown.Item id="profile" textValue="Profile">
-            <Link href="/profile">
+          <Dropdown.Item id="profile" className="py-0" textValue="Profile">
+            <Link href="/profile" className="w-full h-full py-2">
               <Label>Profile</Label>
             </Link>
           </Dropdown.Item>

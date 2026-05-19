@@ -1,7 +1,6 @@
 "use client";
 
-import Icon from "@/components/Icon";
-import { signIn, signInWithGoogle } from "@/lib/auth-client";
+import Icon from "@/app/components/Icon";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -15,8 +14,8 @@ import {
 } from "@heroui/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import Logo from "@/components/Logo";
-import { Sign } from "node:crypto";
+import Logo from "@/app/components/Logo";
+import { signIn, signInWithGoogle } from "@/app/lib/auth-client";
 
 export default function LoginPage() {
   const handleFormSubmit = async (e) => {

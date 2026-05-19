@@ -1,12 +1,12 @@
-import Icon from "@/components/Icon";
-import { getPetById } from "@/lib/action";
+import Icon from "@/app/components/Icon";
 import { DetailRow } from "@/ui/DetailRow";
-import { Button, cn } from "@heroui/react";
+import { cn } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
-import { ModalButton } from "@/ui/ModalButton";
+import { ModalButton } from "@/app/(main)/components/ModalButton";
+import { getPetById } from "@/app/lib/action";
 
 const PetContent = async ({ params }) => {
   let pet = null;
