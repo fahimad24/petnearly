@@ -4,6 +4,13 @@ import { Avatar, Dropdown, Label } from "@heroui/react";
 import { redirect } from "next/navigation";
 
 export function ProfileAvatar({ session }) {
+  const initials = session?.name
+    ?.split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0))
+    .join("");
+
   const handleLogout = async () => {
     await signOut();
     redirect("/login");
@@ -20,9 +27,7 @@ export function ProfileAvatar({ session }) {
               "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg"
             }
           />
-          <Avatar.Fallback delayMs={600}>
-            {session?.name?.charAt(0)}
-          </Avatar.Fallback>
+          <Avatar.Fallback delayMs={600}>{initials}</Avatar.Fallback>
         </Avatar>
       </Dropdown.Trigger>
       <Dropdown.Popover>
@@ -36,9 +41,7 @@ export function ProfileAvatar({ session }) {
                   "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg"
                 }
               />
-              <Avatar.Fallback delayMs={600}>
-                {session?.name?.charAt(0)}
-              </Avatar.Fallback>
+              <Avatar.Fallback delayMs={600}>{initials}</Avatar.Fallback>
             </Avatar>
             <div className="flex flex-col gap-0">
               <p className="text-sm leading-5 font-medium">

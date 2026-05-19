@@ -8,6 +8,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'dbw3zep4prcju.cloudfront.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      }
     ],
   },
 };

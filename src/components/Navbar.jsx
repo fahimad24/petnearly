@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { cn, Skeleton } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -30,7 +30,7 @@ export function Navbar({
   const pathname = usePathname();
   const { data, isPending } = useSession();
   const session = data?.user;
-  console.log("Session in Navbar:", data);
+  console.log("Session in Navbar:", session);
 
   return (
     <>

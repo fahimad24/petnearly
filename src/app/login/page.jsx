@@ -1,7 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
-import { signIn } from "@/lib/auth-client";
+import { signIn, signInWithGoogle } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -16,6 +16,7 @@ import {
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { Sign } from "node:crypto";
 
 export default function LoginPage() {
   const handleFormSubmit = async (e) => {
@@ -128,7 +129,10 @@ export default function LoginPage() {
             <hr className="flex-1 border-t-2" />
           </div>
           <div className="flex items-center justify-center  mt-4">
-            <Button className="bg-white text-accent rounded-none">
+            <Button
+              onPress={signInWithGoogle}
+              className="bg-white text-accent rounded-none"
+            >
               <Icon
                 src="/google.png"
                 alt="Google Logo"
