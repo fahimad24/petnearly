@@ -1,11 +1,13 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+
 export const getAllPets = async () => {
-    const res = await fetch(`${process.env.APP_URL}/all-pets`);
+    const res = await fetch(`${API_URL}/all-pets`);
     const pets = await res.json();
     return pets;
 };
 
 export const getPetById = async (petId) => {
-    const res = await fetch(`${process.env.APP_URL}/all-pets/${petId}`);
+    const res = await fetch(`${API_URL}/all-pets/${petId}`);
     if (!res.ok) {
         throw new Error("Failed to fetch pet details");
     }
@@ -23,11 +25,8 @@ export const submitAdoptionRequest = async (formData, pet, session) => {
     const petId = pet._id;
     const userId = session?.id;
 
-    console.log("userId:", userId);
-    console.log("petId:", petId);
-
     //send the data to the server
-    const res = await fetch(`http://localhost:4000/adopt-pet`, {
+    const res = await fetch(`${API_URL}/adopt-pet`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
