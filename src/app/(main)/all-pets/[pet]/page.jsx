@@ -20,6 +20,8 @@ const PetContent = async ({ params }) => {
   }
 
   console.log("Fetched pet details:", pet.userId, userId);
+  const petStatus =
+    pet && typeof pet.status === "string" ? pet.status : "Available";
 
   return (
     <main className="min-h-screen bg-backTone py-10">
@@ -58,10 +60,23 @@ const PetContent = async ({ params }) => {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-medium text-white shadow-sm">
-                  {pet.status}
+                <span
+                  className={cn(
+                    "inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-medium text-white shadow-sm",
+                    petStatus === "Available"
+                      ? "bg-green-200/40 text-green-500"
+                      : petStatus === "Adopted"
+                        ? "bg-red-200/40 text-red-500"
+                        : "bg-yellow-200/40 text-yellow-700/90",
+                  )}
+                >
+                  {petStatus}
                 </span>
-                <span className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                <span
+                  className={cn(
+                    "inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white shadow-sm",
+                  )}
+                >
                   {pet.adoptionFee} adoption fee
                 </span>
               </div>
@@ -71,8 +86,8 @@ const PetContent = async ({ params }) => {
               <div className="rounded-2xl border border-accent bg-white p-3 shadow-sm  ">
                 <div className="relative aspect-square bg-center w-full overflow-hidden rounded-lg">
                   <Image
-                    src={pet.imageUrl}
-                    alt={pet.petName}
+                    src={pet?.imageUrl}
+                    alt={pet?.petName}
                     width={400}
                     height={200}
                     loading="eager"
@@ -80,33 +95,33 @@ const PetContent = async ({ params }) => {
                   />
                 </div>
                 <div className="mt-4 space-y-2 text-sm text-light-text">
-                  <p className="font-medium text-dark-text">{pet.breed}</p>
-                  <p>{pet.description}</p>
+                  <p className="font-medium text-dark-text">{pet?.breed}</p>
+                  <p>{pet?.description}</p>
                 </div>
               </div>
 
               <section className="rounded-2xl border border-accent bg-neutral p-6 shadow-sm">
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <DetailRow label="Species" value={pet.species} />
-                  <DetailRow label="Age" value={pet.age} />
-                  <DetailRow label="Gender" value={pet.gender} />
-                  <DetailRow label="Location" value={pet.location} />
+                  <DetailRow label="Species" value={pet?.species} />
+                  <DetailRow label="Age" value={pet?.age} />
+                  <DetailRow label="Gender" value={pet?.gender} />
+                  <DetailRow label="Location" value={pet?.location} />
                   <DetailRow
                     label="Adoption fee"
-                    value={pet.adoptionFee}
+                    value={pet?.adoptionFee}
                     className="font-bold text-accent"
                   />
-                  <DetailRow label="Pet ID" value={pet._id} />
+                  <DetailRow label="Pet ID" value={pet?._id} />
                 </div>
                 <div className="mt-6 border-t border-gray-100 pt-6">
                   <h2 className="text-lg font-semibold text-dark-text">
                     Health & Vaccination
                   </h2>
                   <p className="mt-2 text-sm text-light-text">
-                    {pet.healthStatus}
+                    {pet?.healthStatus}
                   </p>
                   <p className="mt-1 text-sm text-light-text">
-                    {pet.vaccinationStatus}
+                    {pet?.vaccinationStatus}
                   </p>
                 </div>
                 <div className="mt-6 border-t border-gray-100 pt-6">
@@ -114,7 +129,7 @@ const PetContent = async ({ params }) => {
                     About
                   </h2>
                   <p className="mt-2 text-sm text-light-text">
-                    {pet.description}
+                    {pet?.description}
                   </p>
                 </div>
                 <div className="mt-6  space-y-3">
@@ -133,16 +148,16 @@ const PetContent = async ({ params }) => {
                   ) : (
                     <ModalButton
                       btnProps={{
-                        isDisabled: pet.status !== "Available",
+                        isDisabled: pet?.status !== "Available",
                         className: cn(
                           " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full px-6 py-2",
-                          pet.status == "Available"
+                          pet?.status == "Available"
                             ? "bg-secondary hover:bg-secondary/80"
                             : "bg-red-500 cursor-not-allowed",
                         ),
                       }}
                       btntext={
-                        pet.status === "Available" ? "Adopt Me" : "Adopted"
+                        pet?.status === "Available" ? "Adopt Me" : "Adopted"
                       }
                       icon={
                         <Icon
@@ -156,7 +171,7 @@ const PetContent = async ({ params }) => {
                     />
                   )}
                   <p className="text-xs text-light-text">
-                    Location verified in {pet.location}
+                    Location verified in {pet?.location}
                   </p>
                 </div>
               </section>

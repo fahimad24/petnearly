@@ -50,6 +50,17 @@ export const updatePetStatus = async (petId, status) => {
     return res;
 }
 
+export const updatePetDetails = async (petId, petData) => {
+    const res = await fetch(`${API_URL}/all-pets/${petId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(petData),
+    });
+    return res;
+}
+
 // Fetch add pet details 
 export const submitAddPetRequest = async (petData) => {
     const res = await fetch(`${API_URL}/all-pets`, {
@@ -58,6 +69,22 @@ export const submitAddPetRequest = async (petData) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(petData),
+    });
+    return res;
+};
+
+// delete adoption request
+export const deleteAdoptionRequest = async (requestId) => {
+    const res = await fetch(`${API_URL}/adopt-pet/${requestId}`, {
+        method: "DELETE",
+    });
+    return res;
+};
+
+// delete from all pets
+export const deletePet = async (petId) => {
+    const res = await fetch(`${API_URL}/all-pets/${petId}`, {
+        method: "DELETE",
     });
     return res;
 };

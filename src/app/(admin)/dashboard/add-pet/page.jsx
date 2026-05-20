@@ -12,6 +12,7 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const fieldWrapperClass = "w-full";
 
@@ -201,6 +202,7 @@ const AddPetPage = () => {
                   Cancel
                 </Button>
                 <Button
+                  onPress={() => redirect("/dashboard/my-listings")}
                   type="submit"
                   className=" bg-accent to-primary px-6 py-3 font-semibold text-white rounded-none  shadow-primary/20 transition hover:opacity-95 w-full "
                 >

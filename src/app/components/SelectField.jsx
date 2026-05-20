@@ -8,6 +8,7 @@ export const SelectField = ({
   description,
   items,
   isRequired = false,
+  defaultValue,
 }) => {
   return (
     <Select
@@ -15,6 +16,7 @@ export const SelectField = ({
       name={name}
       placeholder={placeholder}
       isRequired={isRequired}
+      defaultValue={defaultValue}
     >
       <Label>{label}</Label>
       <Select.Trigger>

@@ -1,8 +1,9 @@
-import { Toast } from "@heroui/react";
 import { Navbar } from "../components/Navbar";
 import Link from "next/link";
 import Logo from "../components/Logo";
 import AsideBar from "../components/AsideBar";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 export const metadata = {
     title: "Dashboard - PetNearly",
@@ -44,9 +45,8 @@ export default function AdminLayout({ children }) {
             />
             <div className="flex min-h-screen flex-col md:flex-row">
                 <AsideBar />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1"><Suspense fallback={<Loading />}>{children}</Suspense></main>
             </div>
-            <Toast.Provider />
         </>
     );
 }

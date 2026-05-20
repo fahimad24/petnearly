@@ -6,9 +6,10 @@ import { auth } from "./auth";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
 
 export const getSession = async () => {
-    const { session } = await auth.api.getSession({
+    const result = await auth.api.getSession({
         headers: await headers()
     })
+    const session = result?.session;
     const { userId, token } = session || {};
     return { userId, token };
 }
@@ -44,4 +45,14 @@ export const getAdoptionRequests = async ({ userId }) => {
     }
     const requests = await res.json();
     return requests;
+}
+
+export const getMatchingPets = async (userId) => {
+    const res = await fetch(`${API_URL}/all-pets/user/${userId}`
+    );
+    if (!res.ok) {
+        throw new Error("Failed to fetch matching pets");
+    }
+    const pets = await res.json();
+    return pets;
 }

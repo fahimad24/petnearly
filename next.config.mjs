@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'dbw3zep4prcju.cloudfront.net',
+        hostname: 'upload.wikimedia.org',
       },
       {
         protocol: 'https',
@@ -19,6 +19,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pinimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
       },
     ],
   },

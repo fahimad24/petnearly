@@ -1,9 +1,14 @@
 "use client";
 
-import { Avatar, Button, Checkbox, Chip, Table, cn } from "@heroui/react";
+import { Button, Checkbox, Chip, Table, cn, toast } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import {
+  deleteAdoptionRequest,
+  updatePetStatus,
+} from "@/app/lib/action-client";
+import { useRouter } from "next/navigation";
 
 const statusColorMap = {
   Approved: "success",
@@ -29,6 +34,7 @@ function SortableColumnHeader({ children, sortDirection }) {
 }
 
 export function RequestTable({ request }) {
+  const router = useRouter();
   const [selectedKeys, setSelectedKeys] = useState(new Set());
   const [sortDescriptor, setSortDescriptor] = useState({
     column: "requestDate",
@@ -49,6 +55,18 @@ export function RequestTable({ request }) {
       return cmp;
     });
   }, [request, sortDescriptor]);
+
+  const deleteRequest = async (id, petId) => {
+    // Implement delete functionality here
+    const res = await deleteAdoptionRequest(id);
+    const ress = await updatePetStatus(petId, "Available");
+    if (res.ok && ress.ok) {
+      toast.success("Request deleted successfully!");
+      router.refresh();
+    } else {
+      toast.danger("Failed to delete request. Please try again.");
+    }
+  };
 
   return (
     <Table>
@@ -172,7 +190,12 @@ export function RequestTable({ request }) {
                       <Icon className="size-4" icon="gravity-ui:eye" />
                     </Link>
 
-                    <Button isIconOnly size="sm" variant="danger-soft">
+                    <Button
+                      isIconOnly
+                      size="sm"
+                      variant="danger-soft"
+                      onClick={() => deleteRequest(user._id, user.petId)}
+                    >
                       <Icon className="size-4" icon="gravity-ui:trash-bin" />
                     </Button>
                   </div>

@@ -34,28 +34,30 @@ export default async function MyRequestsPage() {
         {requests.length === 0 ? (
           <EmptyRequests></EmptyRequests>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-purple-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
-              <p className="text-3xl font-black">{requests.length}</p>
-              <h3>Total Requests</h3>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="p-6 bg-purple-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
+                <p className="text-3xl font-black">{requests.length}</p>
+                <h3>Total Requests</h3>
+              </div>
+              <div className="p-6 bg-amber-200/40 rounded-lg shadow-md flex flex-col items-center gap-2">
+                <p className="text-3xl font-black">{pendingRequests.length}</p>
+                <h3>Pending</h3>
+              </div>
+              <div className="p-6 bg-green-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
+                <p className="text-3xl font-black">{approvedRequests.length}</p>
+                <h3>Approved</h3>
+              </div>
+              <div className="p-6 bg-red-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
+                <p className="text-3xl font-black">{rejectedRequests.length}</p>
+                <h3>Rejected</h3>
+              </div>
             </div>
-            <div className="p-6 bg-amber-200/40 rounded-lg shadow-md flex flex-col items-center gap-2">
-              <p className="text-3xl font-black">{pendingRequests.length}</p>
-              <h3>Pending</h3>
+            <div className="mt-12">
+              <RequestTable request={requests}></RequestTable>
             </div>
-            <div className="p-6 bg-green-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
-              <p className="text-3xl font-black">{approvedRequests.length}</p>
-              <h3>Approved</h3>
-            </div>
-            <div className="p-6 bg-red-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
-              <p className="text-3xl font-black">{rejectedRequests.length}</p>
-              <h3>Rejected</h3>
-            </div>
-          </div>
+          </>
         )}
-        <div className="mt-12">
-          <RequestTable request={requests}></RequestTable>
-        </div>
       </div>
     </main>
   );

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { cn, Skeleton } from "@heroui/react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ProfileAvatar } from "@/ui/Profile";
 import { useSession } from "../lib/auth-client";
@@ -29,6 +28,7 @@ export function Navbar({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  console.log("Current pathname:", pathname);
   const { data, isPending } = useSession();
   const session = data?.user;
 
@@ -89,11 +89,9 @@ export function Navbar({
                   <Link
                     href={item.href}
                     className={cn(
-                      item.isActive && "font-medium text-accent",
-                      "hover:text-accent transition-colors delay-100 text-dark-text",
-                      pathname === item.href && "font-semibold text-accent",
+                      "font-medium hover:text-accent transition-colors delay-100 text-dark-text",
+                      pathname === item.href && "text-accent font-bold",
                     )}
-                    aria-current={item.isActive ? "page" : undefined}
                   >
                     {item.label}
                   </Link>
@@ -124,7 +122,7 @@ export function Navbar({
                       href={item.href}
                       className={cn(
                         "block py-2",
-                        item.isActive && "font-medium text-accent",
+                        "font-medium text-accent",
                         "hover:text-accent transition-colors delay-100",
                       )}
                     >

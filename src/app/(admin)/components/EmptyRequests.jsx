@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const EmptyRequests = () => {
@@ -22,6 +23,14 @@ const EmptyRequests = () => {
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 border border-accent/30 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/30 transition-colors">
             <span className="text-lg">🐾</span> No Pets Yet
           </span>
+        </div>
+        <div>
+          <Link
+            href="/all-pets"
+            className="inline-flex items-center gap-2 rounded-full bg-accent/20 border border-accent/30 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/30 transition-colors"
+          >
+            <span className="text-lg">🐾</span> Browse Pets
+          </Link>
         </div>
       </div>
     </div>

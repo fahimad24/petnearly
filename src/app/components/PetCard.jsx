@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 const PetCard = ({ pet }) => {
   const router = useRouter();
+  const petStatus = typeof pet.status === "string" ? pet.status : "Available";
 
   const handleLinkClick = (e) => {
     router.push(`/all-pets/${pet._id}`);
@@ -41,12 +42,12 @@ const PetCard = ({ pet }) => {
           className={cn(
             "absolute top-3 right-3 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold",
             {
-              "bg-green-500": pet.status === "Available",
-              "bg-red-500": pet.status === "Adopted",
+              "bg-green-500": petStatus === "Available",
+              "bg-red-500": petStatus === "Adopted",
             },
           )}
         >
-          {pet.status || "Pet"}
+          {petStatus}
         </div>
       </div>
 
@@ -103,12 +104,12 @@ const PetCard = ({ pet }) => {
             disabled={pet.status == "Aproved"}
             className={cn(
               " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full",
-              pet.status == "Available"
+              petStatus == "Available"
                 ? "bg-secondary hover:bg-secondary/80"
                 : "bg-red-500 opacity-70 cursor-not-allowed",
             )}
           >
-            {pet.status === "Available" ? "Adopt Me" : "Adopted"}
+            {petStatus === "Available" ? "Adopt Me" : "Adopted"}
             <Icon src="/pawprint.png" alt="Adopt" width={16} height={16} />
           </button>
         </div>

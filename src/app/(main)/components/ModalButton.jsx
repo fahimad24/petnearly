@@ -17,8 +17,10 @@ import {
   updatePetStatus,
   useUserInfo,
 } from "@/app/lib/action-client";
+import { useRouter } from "next/navigation";
 
 export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
+  const router = useRouter();
   const { session } = useUserInfo();
 
   const handleSubmit = async (e) => {
@@ -32,6 +34,7 @@ export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
 
     if (res.ok && ress.ok) {
       toast.success("Adoption request submitted successfully!");
+      router.refresh();
     } else {
       toast.danger("Failed to submit adoption request. Please try again.");
     }
