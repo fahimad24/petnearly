@@ -1,14 +1,15 @@
 import Icon from "@/app/components/Icon";
 import { DetailRow } from "@/ui/DetailRow";
-import { cn } from "@heroui/react";
+import { cn, WarningIcon } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
 import { ModalButton } from "@/app/(main)/components/ModalButton";
-import { getPetById } from "@/app/lib/action";
+import { getPetById, getSession } from "@/app/lib/action";
 
 const PetContent = async ({ params }) => {
+  const { userId } = await getSession();
   let pet = null;
   const { pet: petId } = (await params) || {};
 
@@ -17,6 +18,8 @@ const PetContent = async ({ params }) => {
   } catch (error) {
     pet = null;
   }
+
+  console.log("Fetched pet details:", pet.userId, userId);
 
   return (
     <main className="min-h-screen bg-backTone py-10">
@@ -114,33 +117,47 @@ const PetContent = async ({ params }) => {
                     {pet.description}
                   </p>
                 </div>
-                <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <ModalButton
-                    btnProps={{
-                      isDisabled: pet.status !== "Available",
-                      className: cn(
-                        " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full px-6 py-2",
-                        pet.status == "Available"
-                          ? "bg-secondary hover:bg-secondary/80"
-                          : "bg-red-500 cursor-not-allowed",
-                      ),
-                    }}
-                    btntext={
-                      pet.status === "Available" ? "Adopt Me" : "Adopted"
-                    }
-                    icon={
-                      <Icon
-                        src="/pawprint.png"
-                        alt="Adopt"
-                        width={16}
-                        height={16}
+                <div className="mt-6  space-y-3">
+                  {pet?.userId == userId ? (
+                    <div className="flex flex-col items-center gap-2 rounded-lg bg-red-100/70 p-8 border border-red-300">
+                      <WarningIcon
+                        width={60}
+                        height={60}
+                        className="inline-block mr-1 text-amber-500"
                       />
-                    }
-                    pet={pet}
-                  />
-                  <span className="text-xs text-light-text">
+                      <h3 className="text-lg font-black text-red-600">
+                        This is your listing.
+                      </h3>
+                      <p className="text-sm"> You cannot adopt your own pet.</p>
+                    </div>
+                  ) : (
+                    <ModalButton
+                      btnProps={{
+                        isDisabled: pet.status !== "Available",
+                        className: cn(
+                          " text-dark-text font-bold w-full  transition-colors duration-200 flex items-center justify-center gap-2 rounded-none h-full px-6 py-2",
+                          pet.status == "Available"
+                            ? "bg-secondary hover:bg-secondary/80"
+                            : "bg-red-500 cursor-not-allowed",
+                        ),
+                      }}
+                      btntext={
+                        pet.status === "Available" ? "Adopt Me" : "Adopted"
+                      }
+                      icon={
+                        <Icon
+                          src="/pawprint.png"
+                          alt="Adopt"
+                          width={16}
+                          height={16}
+                        />
+                      }
+                      pet={pet}
+                    />
+                  )}
+                  <p className="text-xs text-light-text">
                     Location verified in {pet.location}
-                  </span>
+                  </p>
                 </div>
               </section>
             </div>
