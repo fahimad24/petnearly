@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
             suppressHydrationWarning
             className={`${poppins.variable} ${nunito.variable} h-full antialiased`}
         >
-            <body suppressHydrationWarning>
+            <body suppressHydrationWarning className="min-h-screen">
                 <Navbar
                     brand={
                         <Link href="/" className="flex items-center">
@@ -58,10 +58,13 @@ export default function RootLayout({ children }) {
                             </Link>
                         </>
                     }
-                    className="bg-neutral"
+                    className="bg-neutral border-b border-accent/40 "
                 />
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col md:flex-row" >
+
+
                     <AsideBar />
+
                     <main className="flex-1">
                         {children}
                     </main>

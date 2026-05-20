@@ -14,7 +14,7 @@ const AsideBar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-full md:w-72 py-20 bg-neutral border border-secondary/20 shadow-sm rounded-lg p-4 h-svh">
+    <aside className="w-full md:w-72 py-20 bg-neutral border-r border-accent/40   p-4 min-h-screen">
       <h2 className="text-xl font-extrabold text-dark-text mb-4">
         Admin Panel
       </h2>
