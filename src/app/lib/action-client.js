@@ -49,3 +49,15 @@ export const updatePetStatus = async (petId, status) => {
     });
     return res;
 }
+
+// Fetch add pet details 
+export const submitAddPetRequest = async (petData) => {
+    const res = await fetch(`${API_URL}/all-pets`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(petData),
+    });
+    return res;
+};

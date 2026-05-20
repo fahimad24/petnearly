@@ -1,48 +1,43 @@
 "use client";
 
+import { SelectField } from "@/app/components/SelectField";
+import { submitAddPetRequest, useUserInfo } from "@/app/lib/action-client";
 import {
   Button,
   Card,
   Form,
   Label,
-  ListBox,
   Input,
-  Select,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
 
 const fieldWrapperClass = "w-full";
 
-const selectFieldClass = "w-full";
-
-const SelectField = ({ label, placeholder, items, isRequired = false }) => {
-  return (
-    <Select
-      className={selectFieldClass}
-      placeholder={placeholder}
-      isRequired={isRequired}
-    >
-      <Label>{label}</Label>
-      <Select.Trigger>
-        <Select.Value />
-        <Select.Indicator />
-      </Select.Trigger>
-      <Select.Popover>
-        <ListBox>
-          {items.map((item) => (
-            <ListBox.Item key={item.id} id={item.id} textValue={item.label}>
-              {item.label}
-              <ListBox.ItemIndicator />
-            </ListBox.Item>
-          ))}
-        </ListBox>
-      </Select.Popover>
-    </Select>
-  );
-};
-
 const AddPetPage = () => {
+  const { session } = useUserInfo();
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    const petData = {
+      ...data,
+      userId: session?.id,
+      status: "Available",
+    };
+    console.log("Submitting pet data:", petData);
+    const res = await submitAddPetRequest(petData);
+    if (res.ok) {
+      toast.success("Pet listing added successfully!");
+    } else {
+      toast.danger("Failed to add pet listing. Please try again.");
+    }
+    console.log("Server response:", res);
+  };
+
   return (
     <main className="min-h-screen bg-backTone px-4 py-8 text-dark-text sm:px-6 lg:px-8">
       <section className="mx-auto max-w-275">
@@ -70,7 +65,11 @@ const AddPetPage = () => {
               <span>Pet Information</span>
             </div>
 
-            <Form className="space-y-6" render={(props) => <form {...props} />}>
+            <Form
+              className="space-y-6"
+              render={(props) => <form {...props} />}
+              onSubmit={handleFormSubmit}
+            >
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <TextField
                   className={fieldWrapperClass}
@@ -82,6 +81,7 @@ const AddPetPage = () => {
                 </TextField>
 
                 <SelectField
+                  name="species"
                   label="Species"
                   placeholder="Select species"
                   isRequired
@@ -94,17 +94,26 @@ const AddPetPage = () => {
                   ]}
                 />
 
-                <TextField className={fieldWrapperClass} name="breed">
+                <TextField
+                  isRequired
+                  className={fieldWrapperClass}
+                  name="breed"
+                >
                   <Label>Breed</Label>
                   <Input placeholder="e.g. Labrador Retriever" />
                 </TextField>
 
-                <TextField className={fieldWrapperClass} name="age">
+                <TextField
+                  defaultValue={0}
+                  className={fieldWrapperClass}
+                  name="age"
+                >
                   <Label>Age (years)</Label>
                   <Input type="number" min="0" placeholder="e.g. 2" />
                 </TextField>
 
                 <SelectField
+                  name="gender"
                   label="Gender"
                   placeholder="Select gender"
                   items={[
@@ -115,6 +124,7 @@ const AddPetPage = () => {
                 />
 
                 <SelectField
+                  name="vaccinationStatus"
                   label="Vaccination Status"
                   placeholder="Select status"
                   items={[
@@ -125,7 +135,7 @@ const AddPetPage = () => {
                 />
               </div>
 
-              <TextField className={fieldWrapperClass} name="petImage">
+              <TextField className={fieldWrapperClass} name="imageUrl">
                 <Label>Pet Image URL</Label>
                 <Input placeholder="https://i.ibb.co/..." />
                 <p className="mt-2 text-xs text-light-text">
@@ -135,6 +145,7 @@ const AddPetPage = () => {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <SelectField
+                  name="healthStatus"
                   label="Health Status"
                   placeholder="Select health status"
                   isRequired
@@ -164,10 +175,12 @@ const AddPetPage = () => {
               <TextField
                 type="email"
                 name="ownerEmail"
+                isReadOnly
+                value={session?.email ?? ""}
                 className={fieldWrapperClass}
               >
                 <Label>Owner Email</Label>
-                <Input placeholder="mdtaraqueahramfahim@gmail.com" />
+                <Input />
               </TextField>
 
               <TextField
@@ -188,7 +201,7 @@ const AddPetPage = () => {
                   Cancel
                 </Button>
                 <Button
-                  type="button"
+                  type="submit"
                   className=" bg-accent to-primary px-6 py-3 font-semibold text-white rounded-none  shadow-primary/20 transition hover:opacity-95 w-full "
                 >
                   Add Pet Listing
