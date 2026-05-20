@@ -1,7 +1,19 @@
-"use server";
+import { headers } from "next/headers";
+import { auth } from "./auth";
+
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
 
+export const getSession = async () => {
+    const { session } = await auth.api.getSession({
+        headers: await headers()
+    })
+    const { userId, token } = session || {};
+    return { userId, token };
+}
+
+
+// 
 export const getAllPets = async () => {
     const res = await fetch(`${API_URL}/all-pets`, {
         next: { tags: ['all-pets'] },
@@ -21,8 +33,9 @@ export const getPetById = async (petId) => {
     return pet;
 };
 
-export const getAdoptionRequests = async () => {
-    const res = await fetch(`${API_URL}/adopt-pet`, {
+export const getAdoptionRequests = async ({ userId }) => {
+
+    const res = await fetch(`${API_URL}/adopt-pet/${userId}`, {
         next: { tags: ['adoption-requests'] },
     });
     if (!res.ok) {

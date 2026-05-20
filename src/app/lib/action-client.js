@@ -13,7 +13,8 @@ export const submitAdoptionRequest = async (formData, pet, session) => {
     const username = session?.name || "Anonymous";
     const email = session?.email || "No email provided";
     const message = formData.get("message");
-    const date = formData.get("date");
+    const pickUpDate = formData.get("date");
+    const requestDate = new Date().toLocaleDateString('en-CA');
     const statReq = "Pending";
     const petId = pet._id;
     const userId = session?.id;
@@ -28,7 +29,8 @@ export const submitAdoptionRequest = async (formData, pet, session) => {
             username,
             email,
             message,
-            date,
+            pickUpDate,
+            requestDate,
             statReq,
             petId,
             userId,

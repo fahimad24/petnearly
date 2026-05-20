@@ -1,70 +1,60 @@
-import Link from "next/link";
-
-const humanDate = (isoOrId) => {
-  if (!isoOrId) return "-";
-  // if looks like ObjectId hex (24 hex chars), extract timestamp
-  if (/^[0-9a-fA-F]{24}$/.test(isoOrId)) {
-    try {
-      const ts = parseInt(isoOrId.substring(0, 8), 16) * 1000;
-      return new Date(ts).toLocaleString();
-    } catch (e) {
-      return isoOrId;
-    }
-  }
-  try {
-    const d = new Date(isoOrId);
-    if (isNaN(d.getTime())) return isoOrId;
-    return d.toLocaleString();
-  } catch {
-    return isoOrId;
-  }
-};
+import Icon from "@/app/components/Icon";
+import EmptyRequests from "../../components/EmptyRequests";
+import { RequestTable } from "../../components/RequestTable";
+import { getAdoptionRequests, getSession } from "@/app/lib/action";
 
 export default async function MyRequestsPage() {
-  const base = process.env.NEXT_PUBLIC_URL || `http://localhost:3000`;
-  const res = await fetch(`${base}/api/adoption-requests`, { cache: 'no-store' });
-  const requests = (await res.json()) || [];
+  const { userId } = await getSession();
+
+  const requests = await getAdoptionRequests({ userId });
+
+  const pendingRequests = requests.filter(
+    (request) => request.statReq === "Pending",
+  );
+  const approvedRequests = requests.filter(
+    (request) => request.statReq === "Approved",
+  );
+  const rejectedRequests = requests.filter(
+    (request) => request.statReq === "Rejected",
+  );
 
   return (
     <main className="min-h-screen p-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">My Requests</h1>
-        <p className="text-sm text-muted mb-6">List of adoption requests submitted.</p>
-
-        <div className="overflow-x-auto bg-white border border-secondary/20 rounded-lg shadow-sm">
-          <table className="min-w-full table-auto">
-            <thead className="bg-neutral/50">
-              <tr>
-                <th className="text-left px-4 py-3">Pet Name</th>
-                <th className="text-left px-4 py-3">Request Date</th>
-                <th className="text-left px-4 py-3">Pickup Date</th>
-                <th className="text-left px-4 py-3">Status</th>
-                <th className="text-left px-4 py-3">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {requests.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-4 py-6 text-center text-muted">No requests found.</td>
-                </tr>
-              )}
-              {requests.map((r) => (
-                <tr key={r._id} className="border-t">
-                  <td className="px-4 py-3">{r.name || r.petName || '—'}</td>
-                  <td className="px-4 py-3">{humanDate(r._id)}</td>
-                  <td className="px-4 py-3">{humanDate(r.date)}</td>
-                  <td className="px-4 py-3">
-                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                      r.statReq === 'Approved' ? 'bg-green-100 text-green-700' : r.statReq === 'Rejected' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-800'
-                    }`}>{r.statReq || 'Pending'}</span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <Link href={`/all-pets/${r.petId}`} className="text-primary hover:underline">View Pet</Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div>
+        <div className="py-1 px-3 rounded-2xl bg-accent/20 inline-flex items-center mb-4 text-center text-sm font-semibold text-accent/90 justify-center gap-2">
+          <Icon src="/paw.png" alt="paw print" width={18} height={18}></Icon>
+          <span className="font-bold">My Requests</span>
+        </div>
+        <h2 className="text-4xl font-black">
+          My Adoption <span className="text-accent">Requests</span>
+        </h2>
+        <p className="text-lg text-light-text font-semibold mb-12">
+          View and manage your pet adoption requests
+        </p>
+        {requests.length === 0 ? (
+          <EmptyRequests></EmptyRequests>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 bg-purple-300 rounded-lg shadow-md flex flex-col items-center gap-2">
+              <p className="text-xl font-black">{requests.length}</p>
+              <h3 className="text-xl font-black">Total</h3>
+            </div>
+            <div className="p-6 bg-amber-200 rounded-lg shadow-md flex flex-col items-center gap-2">
+              <p className="text-xl font-black">{pendingRequests.length}</p>
+              <h3 className="text-xl font-black">Pending</h3>
+            </div>
+            <div className="p-6 bg-green-300 rounded-lg shadow-md flex flex-col items-center gap-2">
+              <p className="text-xl font-black">{approvedRequests.length}</p>
+              <h3 className="text-xl font-black">Approved</h3>
+            </div>
+            <div className="p-6 bg-red-300 rounded-lg shadow-md flex flex-col items-center gap-2">
+              <p className="text-xl font-black">{rejectedRequests.length}</p>
+              <h3 className="text-xl font-black">Rejected</h3>
+            </div>
+          </div>
+        )}
+        <div className="mt-12">
+          <RequestTable request={requests}></RequestTable>
         </div>
       </div>
     </main>
