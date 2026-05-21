@@ -27,6 +27,7 @@ const PetCard = ({ pet }) => {
             alt={pet.petName || "Pet Image"}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="eager"
             unoptimized={pet.imageUrl.startsWith("http")}
             className="object-cover hover:scale-105 transition-transform duration-300"
           />

@@ -25,9 +25,9 @@ const Footer = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3">
+            <Link href="/" className="inline-flex items-end">
               <Logo />
-              <p className="font-black font-nunito text-4xl leading-none">
+              <p className="font-black font-nunito text-5xl leading-none">
                 <span className="text-accent">Pet</span>
                 <span className="text-secondary">Nearly</span>
               </p>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { PiPawPrintFill } from "react-icons/pi";
 
 export default function Loading() {

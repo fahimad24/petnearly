@@ -8,7 +8,7 @@ import { getAllPets } from "../lib/action";
 const FeaturePets = async () => {
   const data = await getAllPets();
   return (
-    <section className=" pb-12 pt-40 bg-[url('/counter_bg.jpg')] bg-cover bg-center relative">
+    <section className=" py-16 bg-[url('/counter_bg.jpg')] bg-cover bg-center relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col items-center text-center">
           <div className="py-1 px-3 rounded-2xl bg-secondary/20 inline-flex items-center mb-4 text-center text-sm font-semibold text-primary/90 justify-center gap-2">

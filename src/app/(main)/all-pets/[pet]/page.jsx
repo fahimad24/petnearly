@@ -83,13 +83,13 @@ const PetContent = async ({ params }) => {
             </div>
 
             <div className="grid gap-8 md:grid-cols-[360px_1fr]">
-              <div className="rounded-2xl border border-accent bg-white p-3 shadow-sm  ">
-                <div className="relative aspect-square bg-center w-full overflow-hidden rounded-lg">
+              <div className="rounded-2xl border border-accent bg-white p-3 shadow-sm ">
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                   <Image
-                    src={pet?.imageUrl}
-                    alt={pet?.petName}
+                    src={pet.imageUrl}
+                    alt={pet.petName}
                     width={400}
-                    height={200}
+                    height={300}
                     loading="eager"
                     className="object-cover bg-center  hover:scale-105 transition-transform duration-300"
                   />

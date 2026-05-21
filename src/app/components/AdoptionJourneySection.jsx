@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Icon from "./Icon";
 
 const steps = [
   {
@@ -30,9 +31,15 @@ const AdoptionJourneySection = () => {
       <div className="relative max-w-7xl mx-auto rounded-b-3xl border border-primary/20 bg-linear-to-br from-white via-neutral to-secondary/15 ">
         <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-5 lg:gap-12 lg:p-14">
           <div className="lg:col-span-2">
-            <p className="inline-flex items-center gap-2 bg-secondary/30 text-dark-text text-xs font-black uppercase tracking-wider px-4 py-2 rounded-full">
-              Adoption Journey
-            </p>
+            <div className="py-1 px-3 rounded-2xl bg-secondary/20 inline-flex items-center mb-4 text-center text-sm font-semibold text-primary/90 justify-center gap-2">
+              <Icon
+                src="/paw.png"
+                alt="paw print"
+                width={18}
+                height={18}
+              ></Icon>
+              <span className="font-bold">Adoption Journey</span>
+            </div>
             <h2 className="mt-5 text-3xl sm:text-4xl font-black text-dark-text leading-tight">
               A Better Path to Pet Adoption
             </h2>

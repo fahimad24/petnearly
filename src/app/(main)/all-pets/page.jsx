@@ -1,14 +1,14 @@
 // app/all-pets/page.jsx (Alternative structure)
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
 import { PetsContent } from "@/app/components/PetsContent";
 import { getAllPets } from "@/app/lib/action";
 import PetFilterSearch from "../components/PetFilterSearch";
+import Loading from "@/app/loading";
 
 export default function AllPetsPage() {
-  const [pets, setPets] = useState([]);
   const [search, setSearch] = useState("");
   const [species, setSpecies] = useState("");
   const [sortBy, setSortBy] = useState("");
@@ -18,7 +18,6 @@ export default function AllPetsPage() {
   useEffect(() => {
     async function loadPets() {
       const allPets = await getAllPets(search, species, sortBy);
-      setPets(allPets);
       setFilteredPets(allPets);
       setLoading(false);
     }
@@ -26,7 +25,11 @@ export default function AllPetsPage() {
   }, [search, species, sortBy]);
 
   if (loading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   return (
@@ -61,7 +64,8 @@ export default function AllPetsPage() {
                 setSortBy={setSortBy}
               />
             </div>
-            <PetsContent pets={pets} itemCount={filteredPets.length} />
+
+            <PetsContent pets={filteredPets} />
           </div>
         </div>
       </section>

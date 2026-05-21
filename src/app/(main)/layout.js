@@ -1,5 +1,6 @@
 import { Navbar } from "@/app/components/Navbar";
 import Logo from "@/app/components/Logo";
+import Footer from "@/app/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -14,7 +15,7 @@ export default function MainLayout({ children }) {
     <>
       <Navbar
         brand={
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-end">
             <Logo />
             <p className="font-black font-nunito text-5xl">
               <span className="text-accent">Pet</span>
@@ -50,6 +51,7 @@ export default function MainLayout({ children }) {
         }
       />
       {children}
+      <Footer />
     </>
   );
 }

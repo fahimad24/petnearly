@@ -3,10 +3,12 @@
 import { Button, Card, Separator } from "@heroui/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
-import { MdDelete, MdMessage, MdModeEdit, MdVisibility } from "react-icons/md";
+import React, { useEffect, useState } from "react";
+import { MdModeEdit, MdVisibility } from "react-icons/md";
 import { TiLocationOutline } from "react-icons/ti";
 import DeleteModal from "./DeleteModal";
+import { RequestModal } from "./RequestModal";
+import { getAdoptionRequests } from "@/app/lib/action";
 
 const PetListCard = ({ pet }) => {
   const router = useRouter();
@@ -110,13 +112,7 @@ const PetListCard = ({ pet }) => {
         >
           <MdModeEdit size={18} />
         </Button>
-        <Button
-          isIconOnly
-          className="bg-accent text-white hover:bg-accent/80 transition-colors"
-          title="View Requests"
-        >
-          <MdMessage size={18} />
-        </Button>
+        <RequestModal petId={pet._id} />
         <DeleteModal pet={pet} />
       </div>
     </Card>

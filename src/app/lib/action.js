@@ -11,7 +11,7 @@ export const getSession = async () => {
     })
     const session = result?.session;
     const { userId, token } = session || {};
-    return { userId, token };
+    return { userId, token, session };
 }
 
 
@@ -35,11 +35,8 @@ export const getPetById = async (petId) => {
     return pet;
 };
 
-export const getAdoptionRequests = async ({ userId }) => {
-
-    const res = await fetch(`${API_URL}/adopt-pet/${userId}`, {
-        next: { tags: ['adoption-requests'] },
-    });
+export const getAdoptionRequests = async (userId) => {
+    const res = await fetch(`${API_URL}/adopt-pet/${userId}`,);
     if (!res.ok) {
         throw new Error("Failed to fetch adoption requests");
     }

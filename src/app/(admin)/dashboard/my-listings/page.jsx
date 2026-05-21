@@ -16,7 +16,7 @@ const MyListingsPage = async () => {
           <div className="mb-8 flex items-center justify-between">
             <div className="space-y-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent">
-                📋 My Dashboard
+                📋 My Listings
               </span>
               <h1 className="text-3xl font-black tracking-tight text-dark-text sm:text-4xl lg:text-5xl">
                 My <span className="text-accent">Listings</span>
