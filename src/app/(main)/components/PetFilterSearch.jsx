@@ -1,7 +1,7 @@
 // app/components/PetFilterSearch.jsx
 "use client";
 
-import { ChevronDown, MagnifierMinus } from "@gravity-ui/icons";
+import { ChevronDown, Magnifier } from "@gravity-ui/icons";
 import { useState } from "react";
 
 export default function PetFilterSearch({ setSearch, setSpecies, setSortBy }) {
@@ -50,7 +50,7 @@ export default function PetFilterSearch({ setSearch, setSpecies, setSortBy }) {
   return (
     <div className="bg-white border border-primary rounded-xl p-5 sticky top-24 mb-10">
       <div className="flex justify-between items-center ">
-        <h2 className="text-lg font-semibold text-gray-800">Filter & Search</h2>
+        <h2 className="text-lg font-black text-gray-800">Filter & Search</h2>
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
@@ -73,7 +73,7 @@ export default function PetFilterSearch({ setSearch, setSpecies, setSortBy }) {
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifierMinus className="h-5 w-5 text-gray-400" />
+              <Magnifier className="h-5 w-5 text-gray-400" />
             </div>
             <input
               type="text"
@@ -142,7 +142,7 @@ export default function PetFilterSearch({ setSearch, setSpecies, setSortBy }) {
               <option value="fee-high-to-low">Fee: High to Low</option>
             </select>
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <MagnifierMinus className="h-5 w-5 text-gray-400" />
+              <Magnifier className="h-5 w-5 text-gray-400" />
             </div>
           </div>
         </div>

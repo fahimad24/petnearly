@@ -11,7 +11,7 @@ export default function AllPetsPage() {
   const [pets, setPets] = useState([]);
   const [search, setSearch] = useState("");
   const [species, setSpecies] = useState("");
-  const [sortBy, setSortBy] = useState("fee-low-to-high");
+  const [sortBy, setSortBy] = useState("");
   const [filteredPets, setFilteredPets] = useState([]);
   const [loading, setLoading] = useState(true);
 

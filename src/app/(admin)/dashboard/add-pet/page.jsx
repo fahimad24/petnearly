@@ -40,7 +40,7 @@ const AddPetPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-backTone px-4 py-8 text-dark-text sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 py-8 text-dark-text sm:px-6 lg:px-8">
       <section className="mx-auto max-w-275">
         <div className="mb-8 space-y-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent shadow-[0_0_0_1px_rgba(255,142,28,0.06)]">

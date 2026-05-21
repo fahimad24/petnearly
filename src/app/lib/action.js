@@ -16,7 +16,7 @@ export const getSession = async () => {
 
 
 // 
-export const getAllPets = async (search, species, sortBy) => {
+export const getAllPets = async (search = "", species = "", sortBy = "") => {
     const res = await fetch(`${API_URL}/all-pets?search=${search}&species=${species}&sortBy=${sortBy}`, {
         next: { tags: ['all-pets'] },
     });

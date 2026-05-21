@@ -27,7 +27,7 @@ const PetCard = ({ pet }) => {
             alt={pet.petName || "Pet Image"}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            loading="eager"
+            unoptimized={pet.imageUrl.startsWith("http")}
             className="object-cover hover:scale-105 transition-transform duration-300"
           />
         ) : (
@@ -67,12 +67,24 @@ const PetCard = ({ pet }) => {
 
           <Separator></Separator>
           <div className="space-y-2 py-4">
-            {pet.breed && (
-              <p className="text-light-text">
-                <span className="font-semibold text-dark-text">Breed:</span>{" "}
-                {pet.breed}
-              </p>
-            )}
+            <div className="flex items-center gap-2 text-sm text-muted justify-between">
+              {pet.breed && (
+                <p className="text-light-text">
+                  <span className="font-semibold text-dark-text">Breed:</span>{" "}
+                  {pet.breed}
+                </p>
+              )}
+              {pet.adoptionFee && (
+                <p className="text-light-text">
+                  <span className="font-semibold text-dark-text">
+                    Adoption Fee:
+                  </span>{" "}
+                  <span className="text-accent font-bold">
+                    ${pet.adoptionFee}
+                  </span>
+                </p>
+              )}
+            </div>
             <div className="flex items-center justify-between text-sm text-muted">
               {pet.age && (
                 <p className="text-light-text">
