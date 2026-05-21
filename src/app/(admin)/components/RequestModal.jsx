@@ -1,5 +1,6 @@
 "use client";
 
+import { getUserAdoptionRequests } from "@/app/lib/action";
 import { updatePetStatus, updateRequestStatus } from "@/app/lib/action-client";
 import { Button, cn, Modal, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -16,18 +17,8 @@ export function RequestModal({ petId }) {
 
   // fetch adoption requests for the pet
   const handleFetchRequests = async (petId) => {
-    try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
-      const res = await fetch(`${API_URL}/adopt-pet/pet/${petId}`);
-      if (!res.ok) {
-        console.error("Failed to fetch adoption requests, status:", res.status);
-        return;
-      }
-      const data = await res.json();
-      setRequests(data);
-    } catch (error) {
-      console.error("Error fetching adoption requests:", error);
-    }
+    const requestsData = await getUserAdoptionRequests(petId);
+    setRequests(requestsData);
   };
 
   const handleApprove = async (petId, requestId, status) => {

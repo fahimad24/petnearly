@@ -3,18 +3,26 @@ import { DetailRow } from "@/ui/DetailRow";
 import { cn, WarningIcon } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
 import { ModalButton } from "@/app/(main)/components/ModalButton";
 import { getPetById, getSession } from "@/app/lib/action";
 
 const PetContent = async ({ params }) => {
-  const { userId } = await getSession();
+  let userId = null;
+  try {
+    const session = await getSession();
+    userId = session?.userId ?? null;
+  } catch (error) {
+    console.error("Error loading session:", error);
+  }
+
   let pet = null;
   const { pet: petId } = (await params) || {};
 
   if (!petId || !/^[0-9a-fA-F]{24}$/.test(petId)) {
-    throw error;
+    notFound();
   }
 
   try {
@@ -22,12 +30,11 @@ const PetContent = async ({ params }) => {
   } catch (error) {
     console.error("Error fetching pet details or adoption request:", error);
     if (error?.status === 404) {
-      throw error;
+      notFound();
     }
     throw error;
   }
 
-  console.log("Fetched pet details:", userId);
   const petStatus =
     pet && typeof pet.status === "string" ? pet.status : "Available";
 

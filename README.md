@@ -6,7 +6,7 @@ PetNearly is a pet adoption platform that helps users discover adoptable pets, s
 
 ## Live URL
 
-Replace with your deployment URL (deployed via Vercel): https://your-deployment-url.example.com
+Replace with your deployment URL (deployed via Vercel): https://petnearly.vercel.app/dashboard
 
 ## Features
 

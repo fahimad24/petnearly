@@ -96,3 +96,22 @@ export const getAdoptionRequestById = async (requestId) => {
     const request = await res.json();
     return request;
 }
+
+export const getUserAdoptionRequests = async (petId) => {
+    const token = await getApiToken();
+
+    const res = await fetch(`${API_URL}/adopt-pet/pet/${petId}`
+        , {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    );
+    if (!res.ok) {
+        console.error("Failed to fetch adoption requests, status:", res.status);
+        return;
+    }
+    const data = await res.json();
+    return data;
+
+}
