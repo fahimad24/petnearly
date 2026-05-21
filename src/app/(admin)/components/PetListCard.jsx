@@ -87,12 +87,12 @@ const PetListCard = ({ pet }) => {
         </div>
 
         {/* Price Display */}
-        <div className="mb-3 flex items-center gap-2 bg-accent/15 rounded px-2 py-2">
-          <span className="text-xl font-black text-accent">
-            ${pet.adoptionFee}
-          </span>
+        <div className="mb-3 flex items-center justify-between gap-2 bg-accent/15 rounded px-2 py-2">
           <span className="text-xs text-light-text font-semibold">
             Adoption Fee
+          </span>
+          <span className="text-xl font-black text-accent">
+            ${pet.adoptionFee}
           </span>
         </div>
       </div>

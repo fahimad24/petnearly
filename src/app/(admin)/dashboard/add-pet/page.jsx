@@ -12,11 +12,12 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const fieldWrapperClass = "w-full";
 
 const AddPetPage = () => {
+  const router = useRouter();
   const { session } = useUserInfo();
 
   const handleFormSubmit = async (e) => {
@@ -33,6 +34,7 @@ const AddPetPage = () => {
     const res = await submitAddPetRequest(petData);
     if (res.ok) {
       toast.success("Pet listing added successfully!");
+      router.push("/dashboard/my-listings");
     } else {
       toast.danger("Failed to add pet listing. Please try again.");
     }

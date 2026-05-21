@@ -29,7 +29,7 @@ const FeaturePets = async () => {
             </div>
           }
         >
-          <PetsContent pets={data} itemCount={3} />
+          <PetsContent pets={data} itemCount={6} />
         </Suspense>
         <div className="flex justify-center mt-8">
           <Link

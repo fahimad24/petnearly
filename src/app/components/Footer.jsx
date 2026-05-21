@@ -18,7 +18,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 overflow-hidden border-t border-primary/20 bg-linear-to-br from-primary to-[#1f5f1f] text-white">
+    <footer className="relative overflow-hidden border-t border-primary/20 bg-linear-to-br from-primary to-[#1f5f1f] text-white">
       <div className="pointer-events-none absolute -top-12 -right-16 h-52 w-52 rounded-full bg-secondary/30 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-12 left-10 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />
 
