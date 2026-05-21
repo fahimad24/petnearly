@@ -15,8 +15,8 @@ const nunito = Nunito({
 });
 
 export const metadata = {
-    title: "PetNearly",
-    description: "Pet adoption platform",
+    title: "PetNearly - Find Your Perfect Pet Match",
+    description: "Discover your ideal pet companion with PetNearly. Browse, search, and connect with pets waiting for a loving home. Your perfect match is just a click away!",
 };
 
 export default function RootLayout({ children }) {

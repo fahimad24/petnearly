@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PetNearly
 
-## Getting Started
+## Purpose
 
-First, run the development server:
+PetNearly is a pet adoption platform that helps users discover adoptable pets, submit adoption requests, and allows admins to manage listings and requests.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live URL
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Replace with your deployment URL (deployed via Vercel): https://your-deployment-url.example.com
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Browse and search adoptable pets with filters
+- Add, edit, and remove pet listings (admin)
+- Submit and manage adoption requests
+- User authentication (signup / login)
+- Responsive UI with admin dashboard and request management
 
-## Learn More
+## NPM Packages Used
 
-To learn more about Next.js, take a look at the following resources:
+Frontend (from `package.json`):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- @gravity-ui/icons
+- @heroui/react
+- @heroui/styles
+- @iconify/react
+- better-auth
+- cn
+- mongodb
+- next
+- react
+- react-dom
+- react-icons
+- tailwind-merge
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Dev (from `package.json`):
 
-## Deploy on Vercel
+- @tailwindcss/postcss
+- @types/node
+- @types/react
+- babel-plugin-react-compiler
+- eslint
+- eslint-config-next
+- tailwindcss
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Server (from `petnearly-server/package.json`):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- cors
+- dotenv
+- express
+- jose-cjs
+- mongodb
+
+---
+
+If you provide the live URL, I can update the Live URL section and optionally add quick run/deploy instructions.
