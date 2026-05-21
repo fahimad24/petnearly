@@ -53,3 +53,13 @@ export const getMatchingPets = async (userId) => {
     const pets = await res.json();
     return pets;
 }
+
+// get one adoption request by request id
+export const getAdoptionRequestById = async (requestId) => {
+    const res = await fetch(`${API_URL}/adopt-pet/request/${requestId}`,);
+    if (!res.ok) {
+        throw new Error("Failed to fetch adoption request");
+    }
+    const request = await res.json();
+    return request;
+}

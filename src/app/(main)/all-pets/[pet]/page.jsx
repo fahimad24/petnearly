@@ -17,9 +17,10 @@ const PetContent = async ({ params }) => {
     pet = await getPetById(petId);
   } catch (error) {
     pet = null;
+    console.error("Error fetching pet details or adoption request:", error);
   }
 
-  console.log("Fetched pet details:", pet.userId, userId);
+  console.log("Fetched pet details:", userId);
   const petStatus =
     pet && typeof pet.status === "string" ? pet.status : "Available";
 

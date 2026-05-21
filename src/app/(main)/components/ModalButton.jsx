@@ -30,9 +30,9 @@ export function ModalButton({ btnProps, btntext = "Adopt Now", icon, pet }) {
 
     //send the data to the server
     const res = await submitAdoptionRequest(formData, pet, session);
-    const ress = await updatePetStatus(pet._id, "Pending");
+    // const ress = await updatePetStatus(pet._id, "");
 
-    if (res.ok && ress.ok) {
+    if (res.ok) {
       toast.success("Adoption request submitted successfully!");
       router.refresh();
     } else {

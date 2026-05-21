@@ -45,7 +45,7 @@ export const updatePetStatus = async (petId, status) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status: status }),
     });
     return res;
 }
@@ -60,6 +60,18 @@ export const updatePetDetails = async (petId, petData) => {
     });
     return res;
 }
+
+// Fetch adoption requests for a pet status update
+export const updateRequestStatus = async (petId, statReq) => {
+    const res = await fetch(`${API_URL}/adopt-pet/${petId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        }, body: JSON.stringify({ statReq: statReq }),
+    });
+
+    return res;
+};
 
 // Fetch add pet details 
 export const submitAddPetRequest = async (petData) => {

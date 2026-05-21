@@ -8,7 +8,6 @@ import { MdModeEdit, MdVisibility } from "react-icons/md";
 import { TiLocationOutline } from "react-icons/ti";
 import DeleteModal from "./DeleteModal";
 import { RequestModal } from "./RequestModal";
-import { getAdoptionRequests } from "@/app/lib/action";
 
 const PetListCard = ({ pet }) => {
   const router = useRouter();
@@ -35,8 +34,12 @@ const PetListCard = ({ pet }) => {
         </div>
         {/* Status Badge - Top Right */}
         <div
-          className={`absolute top-3 right-3 text-white px-3 py-1 rounded-full text-sm font-bold ${
-            petStatus === "Available" ? "bg-green-500" : "bg-red-500"
+          className={`absolute top-3 right-3  px-3 py-1 rounded-full text-sm font-bold ${
+            petStatus === "Pending"
+              ? "bg-amber-200/80 text-amber-600"
+              : petStatus === "Available"
+                ? "bg-green-500 text-white"
+                : "bg-red-500 text-white"
           }`}
         >
           {petStatus}

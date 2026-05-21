@@ -6,7 +6,7 @@ import { getAdoptionRequests, getSession } from "@/app/lib/action";
 export default async function MyRequestsPage() {
   const { userId } = await getSession();
 
-  const requests = await getAdoptionRequests({ userId });
+  const requests = await getAdoptionRequests(userId);
 
   const pendingRequests = requests.filter(
     (request) => request.statReq === "Pending",

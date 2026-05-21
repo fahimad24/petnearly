@@ -190,14 +190,16 @@ export function RequestTable({ request }) {
                       <Icon className="size-4" icon="gravity-ui:eye" />
                     </Link>
 
-                    <Button
-                      isIconOnly
-                      size="sm"
-                      variant="danger-soft"
-                      onClick={() => deleteRequest(user._id, user.petId)}
-                    >
-                      <Icon className="size-4" icon="gravity-ui:trash-bin" />
-                    </Button>
+                    {user.statReq === "Pending" && (
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="danger-soft"
+                        onClick={() => deleteRequest(user._id, user.petId)}
+                      >
+                        <Icon className="size-4" icon="gravity-ui:trash-bin" />
+                      </Button>
+                    )}
                   </div>
                 </Table.Cell>
               </Table.Row>
