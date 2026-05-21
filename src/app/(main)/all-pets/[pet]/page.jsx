@@ -13,11 +13,18 @@ const PetContent = async ({ params }) => {
   let pet = null;
   const { pet: petId } = (await params) || {};
 
+  if (!petId || !/^[0-9a-fA-F]{24}$/.test(petId)) {
+    throw error;
+  }
+
   try {
     pet = await getPetById(petId);
   } catch (error) {
-    pet = null;
     console.error("Error fetching pet details or adoption request:", error);
+    if (error?.status === 404) {
+      throw error;
+    }
+    throw error;
   }
 
   console.log("Fetched pet details:", userId);

@@ -14,29 +14,53 @@ export const getSession = async () => {
     return { userId, token, session };
 }
 
+export const getApiToken = async () => {
+    const { token } = await auth.api.getToken(
+        {
+            headers: await headers()
+        }
+    );
+    return token;
 
-// 
+};
+
+
+
+
+// search, filter and sort pets
 export const getAllPets = async (search = "", species = "", sortBy = "") => {
     const res = await fetch(`${API_URL}/all-pets?search=${search}&species=${species}&sortBy=${sortBy}`, {
         next: { tags: ['all-pets'] },
+
     });
     const pets = await res.json();
     return pets;
 };
 
 export const getPetById = async (petId) => {
+    const token = await getApiToken();
     const res = await fetch(`${API_URL}/all-pets/${petId}`, {
         next: { tags: ['all-pets'] },
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
     if (!res.ok) {
-        throw new Error("Failed to fetch pet details");
+        const error = new Error("Failed to fetch pet details");
+        error.status = res.status;
+        throw error;
     }
     const pet = await res.json();
     return pet;
 };
 
 export const getAdoptionRequests = async (userId) => {
-    const res = await fetch(`${API_URL}/adopt-pet/${userId}`,);
+    const token = await getApiToken();
+    const res = await fetch(`${API_URL}/adopt-pet/${userId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     if (!res.ok) {
         throw new Error("Failed to fetch adoption requests");
     }
@@ -45,8 +69,12 @@ export const getAdoptionRequests = async (userId) => {
 }
 
 export const getMatchingPets = async (userId) => {
-    const res = await fetch(`${API_URL}/all-pets/user/${userId}`
-    );
+    const token = await getApiToken();
+    const res = await fetch(`${API_URL}/all-pets/user/${userId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     if (!res.ok) {
         throw new Error("Failed to fetch matching pets");
     }
@@ -56,7 +84,12 @@ export const getMatchingPets = async (userId) => {
 
 // get one adoption request by request id
 export const getAdoptionRequestById = async (requestId) => {
-    const res = await fetch(`${API_URL}/adopt-pet/request/${requestId}`,);
+    const token = await getApiToken();
+    const res = await fetch(`${API_URL}/adopt-pet/request/${requestId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     if (!res.ok) {
         throw new Error("Failed to fetch adoption request");
     }
