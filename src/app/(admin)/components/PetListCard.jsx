@@ -3,15 +3,25 @@
 import { Button, Card, Separator } from "@heroui/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { MdModeEdit, MdVisibility } from "react-icons/md";
 import { TiLocationOutline } from "react-icons/ti";
 import DeleteModal from "./DeleteModal";
 import { RequestModal } from "./RequestModal";
+import { getUserAdoptionRequests } from "@/app/lib/action";
 
 const PetListCard = ({ pet }) => {
   const router = useRouter();
+  const [requests, setRequests] = useState([]);
   const petStatus = typeof pet.status === "string" ? pet.status : "Available";
+
+  useEffect(() => {
+    const handleFetchRequests = async () => {
+      const requestsData = await getUserAdoptionRequests(pet._id);
+      setRequests(requestsData);
+    };
+    handleFetchRequests();
+  }, [pet._id]);
 
   return (
     <Card
@@ -46,8 +56,8 @@ const PetListCard = ({ pet }) => {
         </div>
         {/* Request Count - Bottom Right */}
         <div className="absolute bottom-3 right-3 bg-white/95 text-dark-text px-2 py-1 rounded text-xs font-bold">
-          {pet.adoptionRequests} request
-          {pet.adoptionRequests !== 1 ? "s" : ""}
+          {requests.length} request
+          {requests.length !== 1 ? "s" : ""}
         </div>
       </div>
 
@@ -98,7 +108,7 @@ const PetListCard = ({ pet }) => {
       </div>
 
       {/* Action Buttons - Admin Controls */}
-      <div className="grid grid-cols-4 gap-2 border-t px-4 py-3 bg-neutral">
+      <div className="grid grid-cols-4 gap-2 border-t px-4 py-3 bg-neutral justify-items-center">
         <Button
           isIconOnly
           onPress={() => router.push(`/all-pets/${pet._id}`)}
@@ -115,7 +125,7 @@ const PetListCard = ({ pet }) => {
         >
           <MdModeEdit size={18} />
         </Button>
-        <RequestModal petId={pet._id} />
+        <RequestModal petId={pet._id} requests={requests} />
         <DeleteModal pet={pet} />
       </div>
     </Card>

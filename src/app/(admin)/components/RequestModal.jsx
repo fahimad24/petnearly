@@ -11,15 +11,14 @@ import { FaUserPen } from "react-icons/fa6";
 import { MdOutlineAccessTime } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 
-export function RequestModal({ petId }) {
-  const [requests, setRequests] = useState([]);
+export function RequestModal({ petId, handleFetchRequests, requests }) {
   const router = useRouter();
 
   // fetch adoption requests for the pet
-  const handleFetchRequests = async (petId) => {
-    const requestsData = await getUserAdoptionRequests(petId);
-    setRequests(requestsData);
-  };
+  // const handleFetchRequests = async (petId) => {
+  //   const requestsData = await getUserAdoptionRequests(petId);
+  //   setRequests(requestsData);
+  // };
 
   const handleApprove = async (petId, requestId, status) => {
     // Update pet status in All-pets
@@ -43,7 +42,6 @@ export function RequestModal({ petId }) {
   return (
     <Modal>
       <Button
-        onPress={() => handleFetchRequests(petId)}
         isIconOnly
         className="bg-accent text-white hover:bg-accent/80 transition-colors"
         title="View Requests"

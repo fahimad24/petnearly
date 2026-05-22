@@ -45,7 +45,7 @@ export default function AdminLayout({ children }) {
             />
             <div className="flex min-h-screen flex-col md:flex-row">
                 <AsideBar />
-                <main className="flex-1 bg-[url('/counter_bg.jpg')] bg-position-[100%_100%]"><Suspense fallback={<Loading />}>{children}</Suspense></main>
+                <main className="flex-1 bg-[url('/counter_bg.jpg')] bg-position-[100%_100%] "><Suspense fallback={<Loading />}>{children}</Suspense></main>
             </div>
         </>
     );
