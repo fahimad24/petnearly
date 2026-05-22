@@ -28,7 +28,6 @@ export function Navbar({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  console.log("Current pathname:", pathname);
   const { data, isPending } = useSession();
   const session = data?.user;
 
