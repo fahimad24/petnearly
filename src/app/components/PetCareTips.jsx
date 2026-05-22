@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Icon from "./Icon";
+import { GiSelfLove } from "react-icons/gi";
+import { PiBowlFoodBold } from "react-icons/pi";
 
 export default function PetCareTips({ className = "" }) {
   return (
@@ -24,11 +26,12 @@ export default function PetCareTips({ className = "" }) {
         {/* 2x2 Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card 1: Diet & Routine */}
-          <div className="bg-white/80 p-8 md:p-10 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
-            <h3 className="text-2xl font-black mb-6 text-primary">
+          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+            <h3 className="text-2xl font-black mb-6 text-primary flex items-end gap-2">
+              <PiBowlFoodBold size={43} />
               Diet & Exercise
             </h3>
-            <ul className="grid gap-4">
+            <ul className="grid gap-4 pl-6">
               <li className="flex items-start gap-4">
                 <span
                   className="mt-2 shrink-0 w-2 h-2 rounded-full bg-accent"
@@ -54,6 +57,15 @@ export default function PetCareTips({ className = "" }) {
                 />
                 <span className="text-light-text font-medium">
                   Practice with active play to lock in what they learned.
+                </span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span
+                  className="mt-2 shrink-0 w-2 h-2 rounded-full bg-accent"
+                  aria-hidden
+                />
+                <span className="text-light-text font-medium">
+                  Establish a consistent daily routine for feeding and exercise.
                 </span>
               </li>
             </ul>
@@ -84,11 +96,12 @@ export default function PetCareTips({ className = "" }) {
           </div>
 
           {/* Card 2: Health & Vet */}
-          <div className="bg-white/80 p-8 md:p-10 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
-            <h3 className="text-2xl font-black mb-6 text-accent">
+          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+            <h3 className="text-2xl font-black mb-6 text-accent flex items-end gap-2">
+              <GiSelfLove size={40} />
               Health & Grooming
             </h3>
-            <ul className="grid gap-4">
+            <ul className="grid gap-4 pl-6">
               <li className="flex items-start gap-4">
                 <span
                   className="mt-2 shrink-0 w-2 h-2 rounded-full bg-primary"
@@ -114,6 +127,15 @@ export default function PetCareTips({ className = "" }) {
                 />
                 <span className="text-light-text font-medium">
                   Provide a safe, comfortable sleeping area.
+                </span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span
+                  className="mt-2 shrink-0 w-2 h-2 rounded-full bg-primary"
+                  aria-hidden
+                />
+                <span className="text-light-text font-medium">
+                  Regularly check for signs of illness or discomfort.
                 </span>
               </li>
             </ul>
