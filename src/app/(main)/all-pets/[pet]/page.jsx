@@ -39,8 +39,8 @@ const PetContent = async ({ params }) => {
     pet && typeof pet.status === "string" ? pet.status : "Available";
 
   return (
-    <main className="min-h-screen bg-backTone py-10">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <main className="min-h-screen bg-backTone relative py-10">
+      <div className="pointer-events-none top-0 bottom-0 absolute inset-0 overflow-hidden">
         <div className="absolute -top-5 -right-5 h-64 w-64 rounded-full bg-secondary/20 blur-3xl" />
         <div className="absolute -bottom-10 -left-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
       </div>

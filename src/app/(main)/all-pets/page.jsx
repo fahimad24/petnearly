@@ -6,7 +6,6 @@ import { LoadingSpinner } from "@/ui/LoadingSpinner";
 import { PetsContent } from "@/app/components/PetsContent";
 import { getAllPets } from "@/app/lib/action";
 import PetFilterSearch from "../components/PetFilterSearch";
-import Loading from "@/app/loading";
 
 export default function AllPetsPage() {
   const [search, setSearch] = useState("");
