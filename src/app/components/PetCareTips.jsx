@@ -24,9 +24,9 @@ export default function PetCareTips({ className = "" }) {
         </div>
 
         {/* 2x2 Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8  ">
           {/* Card 1: Diet & Routine */}
-          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 order-2 md:order-1">
             <h3 className="text-2xl font-black mb-6 text-primary flex items-end gap-2">
               <PiBowlFoodBold size={43} />
               Diet & Exercise
@@ -72,7 +72,7 @@ export default function PetCareTips({ className = "" }) {
           </div>
 
           {/* Image 1 */}
-          <div className="bg-secondary/15 rounded-[2rem] overflow-hidden flex items-center justify-center p-6 border border-secondary/30 shadow-sm relative transition-transform duration-300 hover:-translate-y-1">
+          <div className="bg-secondary/15 rounded-[2rem] overflow-hidden flex items-center justify-center p-6 border border-secondary/30 shadow-sm relative transition-transform duration-300 hover:-translate-y-1 order-1 md:order-2">
             <Image
               src="/pets-care.png"
               alt="Pet care illustration"
@@ -84,7 +84,7 @@ export default function PetCareTips({ className = "" }) {
           </div>
 
           {/* Image 2 */}
-          <div className="bg-accent/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-6 border border-accent/20 shadow-sm relative transition-transform duration-300 hover:-translate-y-1">
+          <div className="bg-accent/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-6 border border-accent/20 shadow-sm relative transition-transform duration-300 hover:-translate-y-1 order-3">
             <Image
               src="/pet-grooming.png"
               alt="Pet grooming illustration"
@@ -96,7 +96,7 @@ export default function PetCareTips({ className = "" }) {
           </div>
 
           {/* Card 2: Health & Vet */}
-          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+          <div className="bg-white/80 py-8 px-6 md:py-10 md:px-8 rounded-[2rem] shadow-[0_4px_20px_rgba(15,23,42,0.03)] border border-primary/10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 order-4">
             <h3 className="text-2xl font-black mb-6 text-accent flex items-end gap-2">
               <GiSelfLove size={40} />
               Health & Grooming

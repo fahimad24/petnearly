@@ -15,9 +15,9 @@ export default function MainLayout({ children }) {
     <>
       <Navbar
         brand={
-          <Link href="/" className="flex items-end">
+          <Link href="/" className="flex items-center">
             <Logo />
-            <p className="font-black font-nunito text-5xl">
+            <p className="font-black font-nunito lg:text-5xl md:text-4xl text-3xl">
               <span className="text-accent">Pet</span>
               <span className="text-primary">Nearly</span>
             </p>

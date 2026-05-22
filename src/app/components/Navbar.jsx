@@ -43,14 +43,14 @@ export function Navbar({
       >
         <header
           className={cn(
-            "grid grid-cols-3 h-20 items-center justify-between ",
+            "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  h-20 items-center justify-between xl:px-0 lg:px-8 md:px-6 px-4",
             maxWidth !== "full" && maxWidthClasses[maxWidth],
             "mx-auto",
           )}
         >
           <div className="flex items-center">
             <button
-              className="md:hidden"
+              className="lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
@@ -81,7 +81,7 @@ export function Navbar({
             </button>
             {brand}
           </div>
-          <ul className="hidden items-center justify-center gap-4 md:flex">
+          <ul className="hidden items-center justify-center gap-4 lg:flex">
             {items &&
               items.map((item) => (
                 <li key={item.href}>
@@ -112,7 +112,7 @@ export function Navbar({
           )}
         </header>
         {isMenuOpen && (
-          <div className="border-t border-gray-200 md:hidden">
+          <div className="border-t border-gray-200 lg:hidden">
             <ul className="flex flex-col gap-2 p-4">
               {items &&
                 items.map((item) => (
@@ -131,7 +131,15 @@ export function Navbar({
                 ))}
               {rightContent && (
                 <li className="mt-4 flex flex-col gap-2 border-t border-gray-200 pt-4">
-                  {rightContent}
+                  {isPending ? (
+                    <div className="flex items-center gap-3">
+                      <Skeleton className="h-10 w-10 shrink-0 rounded-full bg-gray-400" />
+                    </div>
+                  ) : session ? (
+                    <ProfileAvatar session={session} />
+                  ) : (
+                    rightContent
+                  )}
                 </li>
               )}
             </ul>

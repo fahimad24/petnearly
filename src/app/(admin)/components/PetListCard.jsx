@@ -67,12 +67,12 @@ const PetListCard = ({ pet }) => {
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-2xl font-bold text-dark-text">{pet.petName}</h3>
           <p className="text-sm text-light-text flex items-center gap-1">
-            <TiLocationOutline className="text-primary" />
+            <TiLocationOutline size={18} className="text-primary" />
             {pet.location}
           </p>
         </div>
 
-        <Separator className="mb-3" />
+        <Separator />
 
         {/* Details Grid - PetCard Style */}
         <div className="space-y-2 py-3">

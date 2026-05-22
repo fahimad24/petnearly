@@ -13,7 +13,7 @@ const EmptyRequests = () => {
         </p>
 
         {/* Status Badges */}
-        <div className="flex justify-center gap-4 mb-8">
+        <div className="flex justify-center flex-wrap gap-4 mb-8">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 border border-primary/30 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/30 transition-colors">
             <span className="text-lg">🐶</span> No Requests
           </span>
@@ -23,14 +23,14 @@ const EmptyRequests = () => {
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 border border-accent/30 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/30 transition-colors">
             <span className="text-lg">🐾</span> No Pets Yet
           </span>
-        </div>
-        <div>
-          <Link
-            href="/all-pets"
-            className="inline-flex items-center gap-2 rounded-full bg-accent/20 border border-accent/30 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/30 transition-colors"
-          >
-            <span className="text-lg">🐾</span> Browse Pets
-          </Link>
+          <div>
+            <Link
+              href="/all-pets"
+              className="inline-flex items-center gap-2 rounded-full bg-secondary border border-primary/30 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/30 transition-colors"
+            >
+              <span className="text-lg">🐾</span> Browse Pets
+            </Link>
+          </div>
         </div>
       </div>
     </div>

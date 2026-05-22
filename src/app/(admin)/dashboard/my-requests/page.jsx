@@ -19,7 +19,7 @@ export default async function MyRequestsPage() {
   );
 
   return (
-    <main className="min-h-screen p-8">
+    <main className="min-h-screen lg:p-8 md:p-6 p-4 py-6">
       <div>
         <div className="py-1 px-3 rounded-2xl bg-accent/20 inline-flex items-center mb-4 text-center text-sm font-semibold text-accent/90 justify-center gap-2">
           <Icon src="/paw.png" alt="paw print" width={18} height={18}></Icon>
@@ -35,7 +35,7 @@ export default async function MyRequestsPage() {
           <EmptyRequests></EmptyRequests>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="p-6 bg-purple-300/40 rounded-lg shadow-md flex flex-col items-center gap-2">
                 <p className="text-3xl font-black">{requests.length}</p>
                 <h3>Total Requests</h3>

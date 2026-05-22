@@ -16,10 +16,12 @@ const EditPetPage = async ({ params }) => {
           </span>
           <div className="space-y-2">
             <h1 className="text-3xl font-black tracking-tight text-dark-text sm:text-3xl lg:text-4xl">
-              Add a <span className="text-accent">Pet</span> Listing
+              Edit a <span className="text-accent">Pet</span> Listing
             </h1>
             <p className="max-w-2xl text-sm text-light-text sm:text-base">
-              Help a pet find their forever home by creating a detailed listing.
+              Update the details of your pet listing to help it find a new home
+              faster. Make sure to provide accurate and appealing information to
+              attract potential adopters.
             </p>
           </div>
         </div>

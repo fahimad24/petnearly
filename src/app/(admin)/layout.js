@@ -18,7 +18,7 @@ export default function AdminLayout({ children }) {
                 brand={
                     <Link href="/" className="flex items-center">
                         <Logo />
-                        <p className="font-black font-nunito text-5xl">
+                        <p className="font-black font-nunito md:text-5xl text-3xl">
                             <span className="text-accent">Pet</span>
                             <span className="text-primary">Nearly</span>
                         </p>

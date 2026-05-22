@@ -48,20 +48,21 @@ const AdoptionJourneySection = () => {
               Every step is simple so you can focus on what matters: finding
               your next family member.
             </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/all-pets"
-                className="bg-accent text-white font-bold px-6 py-3 rounded-xl shadow-md hover:-translate-y-0.5 hover:shadow-lg transition-all"
-              >
-                Start Exploring
-              </Link>
-              <Link
-                href="/signup"
-                className="border-2 border-primary text-primary font-bold px-6 py-3 rounded-xl hover:bg-primary hover:text-white transition-colors"
-              >
-                Create Account
-              </Link>
+            <div>
+              <div className="mt-8 flex items-center gap-4">
+                <Link
+                  href="/all-pets"
+                  className="bg-accent text-white font-bold px-6 py-3 rounded-xl shadow-md hover:-translate-y-0.5 hover:shadow-lg transition-all shrink-0"
+                >
+                  Start Exploring
+                </Link>
+                <Link
+                  href="/signup"
+                  className="border-2 border-primary text-primary font-bold px-6 py-3 rounded-xl hover:bg-primary hover:text-white transition-colors shrink-0"
+                >
+                  Create Account
+                </Link>
+              </div>
             </div>
           </div>
 

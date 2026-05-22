@@ -38,7 +38,7 @@ export default function LoginPage() {
     redirect("/"); // Redirect to the home page after successful login
   };
   return (
-    <section className="flex flex-col h-screen items-center justify-center bg-[url('/cat-and-dog.webp')] bg-cover bg-center relative">
+    <section className="flex flex-col pt-24 md:py-20 py-10 items-center justify-center bg-[url('/cat-and-dog.webp')] bg-cover bg-center relative ">
       <div className="backdrop-blur absolute w-full h-full top-0"></div>
       <div className="flex items-center mb-5 z-10">
         <Logo />
@@ -48,7 +48,7 @@ export default function LoginPage() {
           <span className="text-primary">Nearly</span>
         </p>
       </div>
-      <div className="w-120 border-2 border-accent shadow rounded p-6 bg-neutral/80 z-10">
+      <div className="md:w-120 w-95 border-2 border-accent shadow rounded p-6 bg-neutral/80 z-10">
         <h1 className="text-4xl font-bold mb-2 text-center">
           Welcome Back Again!
         </h1>

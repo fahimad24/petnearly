@@ -61,7 +61,7 @@ export default function PetFilterSearch({ setSearch, setSpecies, setSortBy }) {
         )}
       </div>
 
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid md:grid-cols-4 gap-2">
         {/* Search by name */}
 
         <div className="col-span-2">
