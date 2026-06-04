@@ -7,7 +7,7 @@ import { PiBowlFoodBold } from "react-icons/pi";
 export default function PetCareTips({ className = "" }) {
   return (
     <section className={`py-16 ${className}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-0">
         {/* Header Section */}
         <div className="mb-12 flex flex-col items-center text-center">
           <div className="py-1 px-3 rounded-2xl bg-secondary/20 inline-flex items-center mb-4 text-center text-sm font-semibold text-primary/90 justify-center gap-2">

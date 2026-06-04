@@ -2,15 +2,37 @@ import React from "react";
 import Icon from "./Icon";
 import Link from "next/link";
 import BottomThum from "./BottomThum";
+import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="lg:bg-[url('/banner.jpg')] bg-[url('/banner2.jpg')]  bg-cover lg:bg-bottom-right bg-center text-white xl:py-40 lg:py-32 md:py-24 py-16">
+    <section className="text-white xl:py-40 lg:py-32 md:py-24 py-16 relative">
+      <div className="absolute md:block hidden top-0 bottom-0 w-full aspect-video">
+        <Image
+          src="/banner.jpg"
+          alt="Hero"
+          fill
+          loading="eager"
+          preload
+          className="object-cover right-10"
+        />
+      </div>
+      <div className="absolute md:hidden top-0 bottom-0 w-full aspect-video">
+        <Image
+          src="/banner2.jpg"
+          alt="Hero"
+          fill
+          loading="eager"
+          preload
+          className="object-cover right-10"
+        />
+      </div>
       <div className="max-w-7xl mx-auto  py-16 xl:px-0 lg:px-8 md:px-6 px-4 relative">
-        <div className="max-w-140 max-sm:bg-backdrop rounded-2xl p-4 max-sm:backdrop-blur-sm">
+        <div className=" max-sm:bg-backdrop rounded-2xl max-sm:backdrop-blur-sm">
           <div className="relative z-10">
-            <h1 className="lg:text-6xl md:text-5xl text-4xl font-black mb-4 md:leading-18">
-              Best Pet Adoption <span className="text-accent">Plat</span>
+            <h1 className="xl:text-7xl lg:text-6xl md:text-5xl text-4xl font-black mb-4 md:leading-18">
+              Best Pet Adoption <br />
+              <span className="text-accent">Plat</span>
               <span className="text-secondary">form</span>
             </h1>
             <p className="text-xl font-bold text-white/90 mb-8 md:max-w-120 lg:max-w-140">

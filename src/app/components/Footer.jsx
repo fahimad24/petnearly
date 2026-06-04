@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="pointer-events-none absolute -top-12 -right-16 h-52 w-52 rounded-full bg-secondary/30 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-12 left-10 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-0 py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-end">
